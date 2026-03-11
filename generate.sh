@@ -53,10 +53,10 @@ echo "Cleaning up..."
 rm -r "./SlickCold/gtk-3.0/internal"
 rm -r "./SlickCold/gtk-3.0/widgets"
 rm -r "./SlickCold/gtk-3.0/apps"
-find "./SlickCold" -name "*.scss" | xargs rm
+find "./SlickCold" -name "*.scss" -print0 | xargs -0 rm
 rm -r "./SlickFire/gtk-3.0/internal"
 rm -r "./SlickFire/gtk-3.0/widgets"
 rm -r "./SlickFire/gtk-3.0/apps"
-find "./SlickFire" -name "*.scss" | xargs rm
+find "./SlickFire" -name "*.scss" -print0 | xargs -0 rm
 
 echo "Done."
