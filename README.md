@@ -10,11 +10,14 @@ The sass compiler is included here in case future versions of dart-sass cause br
 
 The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
 
-Usage
+Installation
 ============
-
-`cd` into the directory and run `./generate.sh`
-This will generate `./SlickCold` and './SlickFire`, copy these directories to `~/.themes`
+```
+git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
+cd slick-gtk-themes
+./generate.sh
+mv SlickCold SlickFire ~/.themes
+```
 
 Extras
 ============
