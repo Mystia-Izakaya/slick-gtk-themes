@@ -1,0 +1,127 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'functions' as *;
+@use 'gradients' as *; 
+
+@mixin gradient-box($gradient-list, $border-state, $orientation: "horizontal", $alpha: 0, $top: true, $right: true, $bottom: true, $left: true, $legacy-mode: false, $force: false) {
+	$nuke: "";
+	@if $force {
+		$nuke: " !important";
+	}
+	$border-list: map.get($border, $border-state);
+
+	// Reduce alpha
+	$a: math.percentage($alpha);
+	$border-list: reduce-alpha($border-list, $a);
+	$gradient-list: reduce-alpha($gradient-list, $a);
+
+	$images: ();
+	$images: list.join($images, generate-border-images($border-list, $orientation, $top, $right, $bottom, $left, $legacy-mode), comma);
+	$images: list.join($images, generate-gradient-images($gradient-list, $orientation, $legacy-mode), comma);
+
+	$sizes: ();
+	$sizes: list.join($sizes, generate-border-sizes($orientation, $top, $right, $bottom, $left), comma);
+	$sizes: list.join($sizes, generate-gradient-sizes($gradient-list, $orientation, $top, $right, $bottom, $left), comma);
+
+	$positions: ();
+	$positions: list.join($positions, generate-border-positions($orientation, $top, $right, $bottom, $left), comma);
+	$positions: list.join($positions, generate-gradient-positions($gradient-list, $orientation, $top, $right, $bottom, $left), comma);
+
+	background-image: $images#{$nuke};
+	background-repeat: no-repeat#{$nuke};
+	background-size: $sizes#{$nuke};
+	background-position: $positions#{$nuke};
+
+	@each $dir, $bool in (top: $top, right: $right, bottom: $bottom, left: $left) {
+		@if $bool {
+			border-#{$dir}-color: color.scale(black, $alpha: -$a)#{$nuke};
+			border-#{$dir}-width: 1px#{$nuke};
+			border-#{$dir}-style: solid#{$nuke};
+		}
+		@else {
+			border-#{$dir}-style: none#{$nuke};
+		}
+	}
+}
+
+@mixin border-box($color, $border-state, $orientation: "horizontal", $alpha: 0, $top: true, $right: true, $bottom: true, $left: true, $legacy-mode: false, $force: false) {
+	$glist: (("linear", 100% 100%, 50% 50%), 0deg, $color);
+	@include gradient-box($glist, $border-state, $orientation, $alpha, $top, $right, $bottom, $left, $legacy-mode, $force);
+}
+
+@mixin image-box($url, $border-state, $orientation: "horizontal", $img-size: (100% 100%), $img-pos: (50% 50%), $top: true, $right: true, $bottom: true, $left: true, $legacy-mode: false, $force: false) {
+	$nuke: "";
+	@if $force {
+		$nuke: " !important";
+	}
+	$border-list: map.get($border, $border-state);
+
+	$images: ();
+	$images: list.join($images, generate-border-images($border-list, $orientation, $top, $right, $bottom, $left, $legacy-mode), comma);
+	$images: list.join($images, url("#{$url}"), comma);
+
+	$sizes: ();
+	$sizes: list.join($sizes, generate-border-sizes($orientation, $top, $right, $bottom, $left), comma);
+	$sizes: list.join($sizes, generate-gradient-sizes((("linear", $img-size, $img-pos), "dummy"), $orientation, $top, $right, $bottom, $left), comma);
+
+	$positions: ();
+	$positions: list.join($positions, generate-border-positions($orientation, $top, $right, $bottom, $left), comma);
+	$positions: list.join($positions, generate-gradient-positions((("linear", $img-size, $img-pos), "dummy"), $orientation, $top, $right, $bottom, $left), comma);
+
+	background-image: $images#{$nuke};
+	background-repeat: no-repeat#{$nuke};
+	background-size: $sizes#{$nuke};
+	background-position: $positions#{$nuke};
+
+	@each $dir, $bool in ("top": $top, "right": $right, "bottom": $bottom, "left": $left) {
+		@if $bool {
+			border-#{$dir}-color: black#{$nuke};
+			border-#{$dir}-width: 1px#{$nuke};
+			border-#{$dir}-style: solid#{$nuke};
+		}
+		@else {
+			border-#{$dir}-style: none#{$nuke};
+		}
+	}
+}
+
+@mixin button($button-state, $border-state, $orientation: "horizontal", $alpha: 0, $top: true, $right: true, $bottom: true, $left: true, $legacy-mode: false, $force: false) {
+	$button-list: map.get($button, $button-state);
+	@include gradient-box($button-list, $border-state, $orientation, $alpha, $top, $right, $bottom, $left, $legacy-mode, $force);
+}
+
+@mixin slider($slider-state, $border-state, $orientation: "horizontal", $alpha: 0, $top: true, $right: true, $bottom: true, $left: true, $legacy-mode: false, $force: false) {
+	$slider-list: map.get($slider, $slider-state);
+	@include gradient-box($slider-list, $border-state, $orientation, $alpha, $top, $right, $bottom, $left, $legacy-mode, $force);
+}
+
+@mixin borderless-gradient($gradient-list, $orientation: horizontal, $alpha: 0, $legacy-mode: false, $force: false) {
+	@include gradient-box($gradient-list, "passive", $orientation, $alpha, false, false, false, false, $legacy-mode, $force);
+}
+
+@mixin check-radio($name) {
+	-gtk-icon-source: url("assets/check-radio/#{$name}1.png");
+	&:hover {
+		-gtk-icon-source: url("assets/check-radio/#{$name}3.png");
+	}
+	&:checked {
+		-gtk-icon-source: url("assets/check-radio/#{$name}2.png");
+	}
+	&:checked:hover {
+			-gtk-icon-source: url("assets/check-radio/#{$name}4.png");
+	}
+	&:indeterminate {
+		-gtk-icon-source: url("assets/check-radio/#{$name}5.png");
+		&:hover {
+			-gtk-icon-source: url("assets/check-radio/#{$name}7.png");
+		}
+		&:checked {
+			-gtk-icon-source: url("assets/check-radio/#{$name}6.png");
+		}
+		&:checked:hover {
+			-gtk-icon-source: url("assets/check-radio/#{$name}8.png");
+		}
+	}
+}

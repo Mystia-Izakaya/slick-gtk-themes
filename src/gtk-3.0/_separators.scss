@@ -1,0 +1,44 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+@use 'sass:list';
+
+separator {
+	min-width: 1px;
+	min-height: 1px;
+	&:hover {
+		background: none;
+	}
+}
+
+// Vertical separators
+menu > separator,
+.vertical > separator,
+separator.horizontal {
+	@include borderless-gradient($separator-gradient, "vertical");
+	border-top: black 1px solid;
+}
+
+// Horizontal separators
+.horizontal > separator,
+separator.vertical {
+	@include borderless-gradient($separator-gradient, "horizontal");
+	border-left: black 1px solid;
+}
+
+// Paned separators
+paned.horizontal > separator {
+	min-width: unset;
+	border: none;
+	background-size: 1px 90%;
+}
+paned.vertical > separator {
+	min-height: unset;
+	border: none;
+	background-size: 90% 1px;
+}
+
+// Menu tweaks
+menu > separator {
+	margin-right: 5px;
+	margin-left: 5px;
+}

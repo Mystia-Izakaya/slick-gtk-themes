@@ -1,0 +1,21 @@
+@use '../internal/mixins' as *;
+
+@each $type in ("check", "radio") {
+	#{$type} {
+		min-width: 14px;
+		min-height: 14px;
+		border: none;
+		padding-right: 4px;
+		@include check-radio("#{$type}");
+		&:hover, &:checked, &:selected {
+			background: none;
+		}
+	}
+	#{$type}button {
+		border: transparent 2px solid;
+		padding: 0px 2px 0px 2px;
+		&:hover, &:checked, &:selected {
+			background: none;
+		}
+	}
+}

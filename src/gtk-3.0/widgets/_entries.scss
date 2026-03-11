@@ -1,0 +1,32 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+entry {
+	@include border-box($theme-color, "normal");
+	padding: 5px;
+	&:focus {
+		@include border-box($theme-color, "toggled");
+	}
+
+	> image {
+		padding: 2px;
+		&:hover {
+			@include button("hovered", "hovered");
+			border: none;
+		}
+		&.right {
+			margin-left: 4px;
+		}
+		&.left {
+			margin-right: 4px;
+		}
+	}
+}
+
+// This controls the 'rename' entry boxes in caja
+.entry {
+	@include border-box($theme-color-light, "normal");
+	&:focus {
+		@include border-box($theme-color-light, "toggled");
+	}
+}

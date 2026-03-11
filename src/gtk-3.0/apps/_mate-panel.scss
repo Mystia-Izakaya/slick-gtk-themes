@@ -1,0 +1,78 @@
+// This file contains MATE specific styles and tweaks
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+// Did you know your MATE desktop is actually rendered as a GtkScrolledWindow inside Caja?
+.caja-desktop-window scrolledwindow {
+	padding: 0px;
+	margin: 0px;
+	background: none;
+	border: none;
+}
+
+// MATE panel
+.mate-panel-menu-bar {
+	// Remove the drop down arrows from panel buttons
+	PanelWidget button {
+		-gtk-icon-source: none;
+	}
+
+	@each $orientation, $opposite in (top: bottom, right: left, bottom: top, left: right) {
+		&.#{$orientation} {
+			background-image: linear-gradient(to #{$opposite}, $panel-gradient);
+			> grid {
+				border-#{$opposite}: 1px solid $panel-edge;
+			}
+		}
+	}
+
+	// Tasklist buttons, serious hack
+	@each $state in ("", ":hover", ":checked", ":hover:checked") {
+		#tasklist-button#{$state} {
+			background-color: transparent;
+			border-image: linear-gradient(to left, transparent, transparent 1px, black 1px) 1 2 1 1 / 1px 2px 1px 1px;
+			border-width: 1px 2px 1px 1px;
+		}
+	}
+
+	// The classic menu
+	menubar {
+		border-top-style: none;
+		border-bottom-style: none;
+		margin: 0px;
+		box-shadow: none;
+		> menuitem > image {
+			-gtk-icon-style: symbolic;
+			color: #87A556;
+		}
+	}
+
+	// The brisk menu button
+	button.brisk-button {
+		image {
+			-gtk-icon-style: symbolic;
+			color: #87A556;
+		}
+	}
+
+	// Applets three dot handle
+	MatePanelAppletFrameDBus {
+		background-image: image(white), image(white), image(white);
+		background-repeat: no-repeat;
+		background-size: 4px 4px;
+		background-position: 4px 4px, 4px 10px, 4px 16px;
+	}
+}
+
+// Brisk menu tweaks
+.brisk-menu {
+	* {
+		-gtk-icon-style: requested;
+	}
+	entry > image {
+		-gtk-icon-style: regular;
+	}
+	viewport button {
+		min-height: 22px;
+	}
+}

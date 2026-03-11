@@ -1,0 +1,231 @@
+@use 'internal/functions' as *;
+@use 'internal/gradients' as *;
+@use 'internal/helpers' as *;
+@use 'internal/mixins' as *;
+
+/////////////
+// General //
+/////////////
+
+// Reduce border overload
+frame > border:not(.flat) {
+	@include border-box($theme-color, "passive");
+	padding: 1px;
+	+ paned,
+	+ scrolledwindow {
+		background: none;
+		border: none;
+		padding: 0px;
+	}
+}
+
+frame.border-inset > border,
+frame.border-outset > border,
+frame.border-groove > border,
+frame.border-ridge > border {
+	background: none;
+	border: $iogr-color 1px solid;
+}
+
+.background {
+	background-color: $bg-color;
+}
+.view {
+	background-color: $theme-color;
+}
+widget {
+	background-color: $theme-color;
+}
+
+//////////////////////
+// Scrolled windows //
+//////////////////////
+
+scrolledwindow {
+	@include border-box($theme-color, "passive");
+	padding: 1px;
+	// This removes the annoying space between the scrollbar and its window
+	-GtkScrolledWindow-scrollbar-spacing: 0px;
+	// Reduce border overload
+	&:not(.frame) {
+		background: none;
+		border: none;
+		padding: 0px;
+	}
+	textview {
+		background-image: none;
+		border: none;
+	}
+}
+
+@mixin scroll($state, $orientation) {
+	min-#{dimension($orientation)}: 16px;
+	min-#{dimension(flip($orientation))}: 32px;
+	background: none;
+	border-image-source: url("assets/scrollbars/slider-#{$orientation}-#{$state}.png");
+	border-image-slice: rotate-n((8 2 8 2), dirindex($orientation));
+	border-image-width: rotate-n((8px 2px 8px 2px), dirindex($orientation));
+	border-image-repeat: rotate-n((stretch round), dirindex($orientation));
+	margin: -1px;
+}
+
+scrollbar {
+	&:hover {
+		background-color: transparent;
+	}
+	button {
+		color: transparent;
+		padding: 0px;
+	}
+	&.vertical button {
+		min-height: 14px;
+	}
+	&.horizontal button {
+		min-width: 14px;
+	}
+	@each $orientation in ("vertical", "horizontal") {
+		&.#{$orientation} {
+			& trough {
+				@if $orientation == "horizontal" {
+					@include border-box(black, "passive", $right: false, $left: false);
+				}
+				@else if $orientation == "vertical" {
+					@include border-box(black, "passive", $top: false, $bottom: false);
+				}
+			}
+			& slider {
+				@include scroll("normal", $orientation);
+			}
+			& slider:hover {
+				@include scroll("hover", $orientation);
+			}
+			& slider:active {
+				@include scroll("active", $orientation);
+			}
+			// Steppers
+			@each $stepper in ("up", "down") {
+				& button.#{$stepper} {
+					@if $orientation == "horizontal" {
+						@if $stepper == "up" { $stepper: "left"; }
+						@else if $stepper == "down" { $stepper: "right"; }
+					}
+					@include image-box("assets/scrollbars/stepper-#{$stepper}.png", "normal", flip($orientation));
+					&:hover {
+						@include image-box("assets/scrollbars/stepper-#{$stepper}.png", "hovered", flip($orientation));
+					}
+					&:active {
+						@include image-box("assets/scrollbars/stepper-#{$stepper}-prelight.png", "hovered", flip($orientation));
+					}
+					&:disabled {
+						@include image-box("assets/scrollbars/stepper-#{$stepper}-disabled.png", "passive", flip($orientation));
+					}
+				}
+			}
+		}
+	}
+}
+
+//////////////////////
+// Notebooks & Tabs //
+//////////////////////
+
+// The height difference between selected and unselected tabs
+$selected-height-difference: 6px;
+
+notebook {
+	header {
+		background-color: transparent;
+		margin: 1px;
+
+		tab {
+			background-position: center;
+			background-size: 100% 100%;
+			border-image-slice: 1;
+			border-image-width: 1px;
+			border-style: none;
+			padding: 4px;
+			button {
+				padding: 0px;
+			}
+		}
+
+		&.top tab {
+			box-shadow: black -1px -1px, black 1px -1px;
+		}
+		&.right tab {
+			box-shadow: black 1px -1px, black 1px 1px;
+		}
+		&.bottom tab {
+			box-shadow: black 1px 1px, black -1px 1px;
+		}
+		&.left tab {
+			box-shadow: black -1px 1px, black -1px -1px;
+		}
+
+		@each $direction, $opposite in $sides {
+			&.#{$direction} {
+				padding-#{$direction}: $selected-height-difference;
+				margin-#{$opposite}: -2px;
+				tab {
+					background-image: linear-gradient(to #{$opposite}, $tab-gradient);
+					border-image-source: image($border-passive-color);
+					// Minor fix for close buttons
+					button {
+						padding: 0px;
+					}
+				}
+				tab:hover {
+					background-image:
+					radial-gradient(ellipse 100% 100% at #{$direction} center, $tab-glow-gradient),
+					linear-gradient(to #{$opposite}, $tab-gradient);
+					border-image-source: radial-gradient(ellipse 100% 100% at #{$direction} center, $tab-border-glow-gradient);
+				}
+				tab:checked {
+					background-image: linear-gradient(to #{$opposite}, $tab-selected-gradient);
+					border-image-source: linear-gradient(to #{$opposite}, $tab-border-glow-gradient);
+					border-image-width: rotate-n((1px 1px 0px 1px), dirindex($direction));
+					margin-#{$direction}: -$selected-height-difference;
+				}
+				// Minor fix for buttons inside headerbar
+				> button {
+					margin-#{$opposite}: 1px;
+				}
+			}
+		}
+	}
+
+	// Only draw stack border if header is present
+	> stack:not(:only-child) {
+		@include border-box($notebook-bg, "passive");
+		padding: 1px;
+	}
+}
+
+stacksidebar > :only-child {
+	@include border-box($notebook-bg, "passive");
+	padding: 1px;
+}
+
+///////////////////
+// Paned windows //
+///////////////////
+
+paned {
+	padding: 1px;
+	> scrolledwindow,
+	> paned {
+		background: none;
+		border: none;
+		padding: 0px;
+	}
+}
+
+///////////////
+// Textviews //
+///////////////
+textview {
+	padding: 1px;
+	text {
+		background-color: $theme-color;
+	}
+}

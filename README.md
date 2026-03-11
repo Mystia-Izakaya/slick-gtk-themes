@@ -1,0 +1,37 @@
+SlickCold and SlickFire GTK3+ Themes
+===========
+
+SlickCold is complete rewrite of OriginalSeed's [DarkCold](https://github.com/originalseed/darkcold) GTK theme from scratch in sass, with some assests reused.
+SlickFire is generated from SlickCold based on infinity0's [DarkFire](https://github.com/infinity0/dark-themes) script.
+
+These themes were designed and only tested on MATE, though feel free to report if anything seems broken on other DEs.
+
+The sass compiler is included here in case future versions of dart-sass cause breakage.
+
+The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
+
+Usage
+============
+
+`cd` into the directory and run `./generate.sh`
+This will generate `./SlickCold` and './SlickFire`, copy these directories to `~/.themes`
+
+Extras
+============
+
+Theming Firefox and its forks
+------------
+A `chrome.css` is generated inside each theme directory, this is meant to be used with with Aris-t2's [Custom CSS for Firefox](https://github.com/Aris-t2/CustomCSSforFx), import it at the end of `userChrome.css`. See that repo for more details on theming Firefox with CSS.
+
+Theming GIMP
+------------
+GIMP has styles that override the system theme, to fix this create an empty style to be used by GIMP like so:
+```
+sudo mkdir /usr/share/gimp/3.0/themes/NoOverrides
+sudo touch /usr/share/gimp/3.0/themes/NoOverrides/gimp.css
+```
+Now Open GIMP, go to Edit > Preferences > Interface > Theme > Select NoOverrides and reload your theme.
+
+Emerald theme
+------------
+Included is also two emerald themes inside `./emerald-themes` to be used with the Emerald window decorator, import the themes from Emerald Theme Manager. These themes are also based on OriginalSeed's DarkCold emerald theme.

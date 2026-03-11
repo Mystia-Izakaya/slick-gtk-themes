@@ -1,0 +1,36 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:map';
+@use 'sass:color';
+
+// Infobars
+$infobar-bg-colors: (
+	"info": color.mix($bg-color, #ffffff, 50%),
+	"warning": color.mix($bg-color, #ffff00, 50%),
+	"question": color.mix($bg-color, #00aaff, 50%),
+	"error": color.mix($bg-color, #ff0000, 50%),
+	"other": color.mix($bg-color, #ffffff, 90%)
+);
+$infobar-border-colors: (
+	"info": color.mix($border-passive-color, #ffffff, 20%),
+	"warning": color.mix($border-passive-color, #ffff00, 20%),
+	"question": color.mix($border-passive-color, #00aaff, 20%),
+	"error": color.mix($border-passive-color, #ff0000, 20%),
+	"other": color.mix($border-passive-color, #ffffff, 75%)
+);
+
+@each $type, $class in (info: ".info", warning: ".warning", question: ".question", error: ".error", other: "") {
+	infobar#{$class} {
+		$bg-color: map.get($infobar-bg-colors, #{$type});
+		$border-color: map.get($infobar-border-colors, #{$type});
+		margin: 1px;
+		box-shadow: black 0px 0px 0px 1px;
+		background: $bg-color;
+		border: $border-color 1px solid;
+		revealer > box {
+			background: none;
+			border: none;
+			padding: 0px;
+		}
+	}
+}

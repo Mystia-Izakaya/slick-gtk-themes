@@ -1,0 +1,9 @@
+@use '../internal/mixins' as *;
+
+expander {
+	@include border-box(transparent, "passive");
+	padding: 1px;
+	arrow {
+		padding-right: 4px;
+	}
+}

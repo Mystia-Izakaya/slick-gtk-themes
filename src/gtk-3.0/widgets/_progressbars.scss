@@ -1,0 +1,30 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+progressbar {
+	trough {
+		@include border-box($trough-bg, "passive");
+	}
+	&.horizontal trough {
+		padding: 2px 1px 2px 1px;
+	}
+	&.vertical trough {
+		padding: 1px 2px 1px 2px;
+	}
+	@each $orientation, $dimension in ("horizontal": "height", "vertical": "width") {
+		&.#{$orientation} {
+			trough, progress {
+				min-#{$dimension}: 14px;
+			}
+			progress {
+				@include gradient-box($progressbar-gradient, "toggled", $orientation);
+			}
+		}
+	}
+}
+
+// Apparently progresses can be found inside entries, this seems to be a common thing especially in GIMP.
+entry > progress {
+	@include gradient-box($progressbar-gradient, "toggled");
+	border: none;
+}

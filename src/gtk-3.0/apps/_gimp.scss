@@ -1,0 +1,46 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:color';
+
+* {
+	-GimpDockWindow-default-height:    300;
+	-GimpMenuDock-minimal-width:       200;
+	-GimpDockWindow-menu-preview-size: button;
+	-GimpToolPalette-tool-icon-size:   large-toolbar;
+	-GimpToolPalette-button-relief:    none;
+	-GimpDock-tool-icon-size:          large-toolbar;
+	-GimpDockbook-tab-icon-size:       button;
+	-GimpColorNotebook-tab-icon-size:  button;
+	-GimpDockable-content-border:      2;
+	-GimpEditor-content-spacing:       2;
+	-GimpEditor-button-spacing:        2;
+	-GimpEditor-button-icon-size:      menu;
+	-GimpDataEditor-minimal-height:    96;
+	-GimpUnitComboBox-appears-as-list: 0;
+
+	// GIMP specific or not? needs to be investigated.
+	-GtkDialog-content-area-border:    0;
+	-GtkDialog-button-spacing:         6;
+	-GtkDialog-action-area-border:     12;
+}
+
+GimpSpinScale {
+	entry {
+		padding: 2px;
+	}
+	// Buttons inside GimpSpinScale do not support transparency, so we do this for transparency
+	&:not(:disabled) button:disabled {
+		@include button("disabled", "normal", $alpha: 0.5);
+		-gtk-icon-effect: dim; // For regular icons
+		color: color.scale($fg-color, $alpha: -50%) // For symbolic icons
+	}
+}
+
+#gimp-internal-dock-1 toolpalette toolitemgroup toolbutton button {
+	min-width: 28px;
+	min-height: 28px;
+}
+
+#gimp-canvas + button + button {
+	margin-left: 0px;
+}

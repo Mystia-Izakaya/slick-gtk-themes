@@ -1,0 +1,71 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+
+//////////////
+// Menubars //
+//////////////
+
+menubar {
+	@include borderless-gradient($menubar-gradient);
+	border-bottom: $theme-color 1px solid;
+	box-shadow: $border-passive-color 0px 1px;
+	margin-bottom: 1px;
+	> menuitem {
+		padding: 3px 6px 3px 6px;
+	}
+}
+
+// The menu itself
+menu {
+	@include borderless-gradient($menu-gradient);
+	background-color: $bg-color; // Fallback color, this is necessary for some apps
+	border: $menu-border-color 1px solid;
+	padding: 1px;
+}
+
+// Menu items
+menuitem {
+	border: transparent 1px solid;
+	padding: 3px;
+	& > check,
+	& > radio,
+	& > image {
+		margin-right: 3px;
+		margin-left: 1px;
+	}
+	&:hover {
+		@include button("toggled", "toggled");
+	}
+}
+
+//////////////
+// Toolbars //
+//////////////
+
+toolbar {
+	padding: 2px;
+	box-shadow: $border-passive-color 0px 0px 0px 1px;
+	&.horizontal {
+		@include borderless-gradient($toolbar-gradient);
+		separator {
+			margin: 0px 3px 0px 3px;
+		}
+		entry {
+			min-height: 20px;
+		}
+	}
+	&.vertical {
+		@include borderless-gradient($toolbar-gradient, "vertical");
+		separator {
+			margin: 3px 0px 3px 0px;
+		}
+	}
+	button {
+		margin: 0px;
+		&:disabled {
+			background: none;
+			border-image: none;
+			border-color: transparent;
+		}
+	}
+}

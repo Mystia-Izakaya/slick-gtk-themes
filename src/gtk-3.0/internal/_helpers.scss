@@ -1,0 +1,60 @@
+@use 'sass:meta';
+@use 'sass:list';
+@use 'functions' as *;
+
+@function dimension($orientation) {
+	@if $orientation == "horizontal" {@return "height"; }
+	@else if $orientation == "vertical" {@return "width"; }
+	@else { @error "Invalid orientation: '#{$orientation}'."; }
+}
+
+@function flip($term) {
+	@if $term == "horizontal" {@return "vertical"; }
+	@else if $term == "vertical" {@return "horizontal"; }
+	@else if $term == "width" {@return "height"; }
+	@else if $term == "height" {@return "width"; }
+	@else { @error "Invalid term: '#{$term}'."; }
+}
+
+@function rotate-list($list, $forward: true) {
+	@if meta.type-of($list) == "list" {	
+		@if $forward {
+			$last: list.nth($list, list.length($list));
+			$sliced-list: list-slice($list, 1, list.length($list) - 1);
+			@return list.join($last, $sliced-list, list.separator($list));
+		}
+		@else {
+			$first: list.nth($list, 1);
+			$sliced-list: list-slice($list, 2, list.length($list));
+			@return list.join($sliced-list, $first, list.separator($list));
+		}
+	}
+	@else {
+		@error "Not a list: #{$list}."
+	}
+}
+
+@function rotate-n($list, $n, $forward: true) {
+	@if $n == 0 {
+		@return $list;
+	}
+	@for $i from 1 through $n {
+		$list: rotate-list($list, $forward);
+	}
+	@return $list;
+}
+
+@function dirindex($dir) {
+	@if $dir == "top" or $dir == "horizontal" { @return 0;}
+	@else if $dir == "right" or $dir == "vertical" { @return 1;}
+	@else if $dir == "bottom" { @return 2;}
+	@else if $dir == "left" { @return 3;}
+	@else { @error "Not a direction: #{$dir}." }
+}
+
+$sides: (
+	top: bottom,
+	right: left,
+	bottom: top,
+	left: right
+);

@@ -1,0 +1,73 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+@use 'sass:color';
+
+* {
+	border-radius: 0px;				// No rounded border corners
+	border-color: $border-passive-color;		// Set the default border color whenever a border is present
+	color: $fg-color;				// Set the default foreground color
+
+	-gtk-icon-style: regular;					// Disable symbolic icons. Note: they are re-enabled in few places later.
+	-GtkTextView-error-underline-color: $underline-error-color;	// Error underline color
+
+	&:hover {
+		background-color: color.scale($selected-bg-color, $alpha: -30%);
+	}
+
+	&:selected {
+		color: $selected-fg-color;
+		background-color: $selected-bg-color;
+		@include button("toggled", "toggled");
+		border: none;
+	}
+
+	// Apply transparency only to the topmost disabled element
+	&:disabled {
+		opacity: 0.5;
+	}
+	&:disabled &:disabled {
+		opacity: 1;
+	}
+	&:link {
+		color: $link-color;
+		background-color: transparent;
+		* {
+			color: $link-color;
+			text-decoration: underline;
+			background-color: transparent;
+			text-decoration-color: $link-color;
+		}
+	}
+	&:visited {
+		color: $visited-link-color;
+		background-color: transparent;
+		* {
+			color: $visited-link-color;
+			background-color: transparent;
+			text-decoration: underline;
+			text-decoration-color: $visited-link-color;
+		}
+	}
+}
+
+// Text selection
+selection {
+	color: $selected-fg-color;
+	background-color: $selected-bg-color;
+}
+
+@keyframes alert {
+	from {
+		box-shadow: inset $attention-color 0px 0px 10px 0px;
+	}
+	50% {
+		box-shadow: none;
+	}
+	to {
+		box-shadow: inset $attention-color 0px 0px 10px 0px;
+	}
+}
+
+.needs-attention {
+	animation: 0.5s alert linear infinite;
+}

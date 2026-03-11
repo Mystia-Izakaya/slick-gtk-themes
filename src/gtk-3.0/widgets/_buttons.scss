@@ -1,0 +1,61 @@
+@use '../internal/mixins' as *;
+
+button, modelbutton {
+	padding: 4px 5px 4px 5px;
+	&.image-button {
+		padding: 3px;
+	}
+}
+
+button, .activatable, modelbutton {
+	@include button("normal", "normal");
+	&:focus {
+		@include button("normal", "toggled");
+	}
+	&:hover {
+		@include button("hovered", "hovered");
+	}
+	&:active {
+		@include button("hovered-pressed", "hovered");
+		-gtk-icon-effect: highlight;
+	}
+	&:disabled {
+		@include button("disabled", "normal");
+	}
+	&:checked, &:selected {
+		@include button("toggled", "toggled");
+		&:hover {
+			@include button("toggled", "hovered");
+		}
+		&:active {
+			@include button("toggled-pressed", "hovered");
+		}
+		&:disabled {
+			@include button("toggled", "toggled");
+		}
+	}
+	&.suggested-action {
+		@include button("suggested", "suggested");
+		&:focus {
+			@include button("suggested", "toggled");
+		}
+		&:hover {
+			@include button("suggested-hovered", "suggested-hovered");
+		}
+		&:active {
+			@include button("suggested-pressed", "suggested-hovered");
+		}
+	}
+	&.destructive-action {
+		@include button("destructive", "destructive");
+		&:focus {
+			@include button("destructive", "destructive-focused");
+		}
+		&:hover {
+			@include button("destructive-hovered", "destructive-hovered");
+		}
+		&:active {
+			@include button("destructive-pressed", "destructive-hovered");
+		}
+	}
+}

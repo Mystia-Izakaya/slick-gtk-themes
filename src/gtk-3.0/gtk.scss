@@ -1,0 +1,29 @@
+@use 'windows';
+@use 'common'; // This needs to come after windows
+@use 'separators';
+
+@use 'widgets/arrows';
+@use 'widgets/buttons';
+@use 'widgets/calendars';
+@use 'widgets/check-radio';
+@use 'widgets/colorswatches';
+@use 'widgets/entries';
+@use 'widgets/expanders';
+@use 'widgets/infobars';
+@use 'widgets/levelbars';
+@use 'widgets/progressbars';
+@use 'widgets/rubberbands';
+@use 'widgets/scales';
+@use 'widgets/spinbuttons';
+@use 'widgets/spinners';
+@use 'widgets/switches';
+@use 'widgets/treeviews';
+
+@use 'bars';
+@use 'csd';
+@use 'osd_and_popups';
+
+@use 'apps/mate-panel';
+@use 'apps/gimp';
+
+@use 'workarounds';

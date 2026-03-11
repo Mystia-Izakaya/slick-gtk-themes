@@ -1,0 +1,38 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+@use 'internal/functions' as *;
+@use 'sass:map';
+
+// Shadow
+.popup decoration,
+box.osd,
+popover,
+tooltip decoration {
+	box-shadow: black 1px 1px 4px 1px;
+}
+
+.osd.background,
+.osd.popover,
+box.osd {
+	@include border-box(transparent, "toggled");
+	background-color: reduce-alpha($theme-color, 10%);
+}
+
+// This is needed for OSD progress bars such as volume and brightness OSD popups
+.osd.trough {
+	background: $trough-bg;
+}
+.osd.progressbar {
+	@include borderless-gradient($progressbar-gradient);
+}
+
+popover {
+	border: $border-passive-color 1px solid;
+}
+
+// Note, do not use border-box, or any of the other mixins, it causes issues in firefox tooltips.
+tooltip.background {
+	border-image: linear-gradient(to bottom, map.get($border, "hovered")) 1 / 1px;
+	background-color: reduce-alpha($theme-color, 10%);
+	box-shadow: black 0px 0px 0px 1px;
+}

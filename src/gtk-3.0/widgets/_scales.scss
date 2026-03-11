@@ -1,0 +1,68 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use '../internal/helpers' as *;
+
+scale {
+	&:hover {
+		background: none;
+	}
+	trough {
+		@include border-box($trough-bg, "passive");
+		padding: 1px;
+	}
+	indicator {
+		min-height: 1px;
+		min-width: 1px;
+	}
+	@each $orientation, $dimension in (horizontal: height, vertical: width) {
+		&.#{$orientation} {
+			trough {
+				margin: rotate-n((12px 6px 12px 6px), dirindex($orientation));
+			}
+			highlight {
+				@include borderless-gradient($scale-highlight-gradient, $orientation);
+				border: black 1px solid;
+			}
+			slider {
+				@include slider("normal", "normal", flip($orientation));
+				min-#{$dimension}: 26px;
+				min-#{flip($dimension)}: 12px;
+				margin: rotate-n((-12px 0px -12px 0px), dirindex($orientation));
+				&:focus {
+					@include slider("normal", "toggled", flip($orientation));
+				}
+				&:hover {
+					@include slider("hovered", "toggled", flip($orientation));
+				}
+				&:active {
+					@include slider("hovered-pressed", "toggled", flip($orientation));
+				}
+				&:disabled {
+					@include slider("disabled", "normal", flip($orientation));
+				}
+			}
+			mark indicator {
+				min-#{$dimension}: 8px;
+			}
+			mark:nth-child(odd) indicator, mark:nth-last-child(odd) indicator {
+				min-#{$dimension}: 12px;
+			}
+		}
+	}
+	&.horizontal {
+		&.marks-before marks {
+			margin-bottom: -10px;
+		}
+		&.marks-after marks {
+			margin-top: -10px;
+		}
+	}
+	&.vertical {
+		&.marks-before marks {
+			margin-right: -10px;
+		}
+		&.marks-after marks {
+			margin-left: -10px;
+		}
+	}
+}

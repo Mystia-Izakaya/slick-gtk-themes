@@ -1,0 +1,13 @@
+@use '../internal/gradients' as *;
+//@use '../internal/mixins' as *;
+@use 'sass:color';
+
+// Mouse area selection
+rubberband,
+.rubberband,
+rubberband.view
+.rubberband.view {
+	color: $selected-fg-color;
+	background: color.scale($selected-bg-color, $alpha: -65%);
+	border: $selected-bg-color 1px solid;
+}

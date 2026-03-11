@@ -1,0 +1,31 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+switch {
+	&:hover, &:hover * {
+		background-color: transparent;
+	}
+	@include border-box($switch-off, "normal");
+	&:hover {
+		@include border-box($switch-off, "hovered");
+	}
+	&:checked {
+		@include border-box($switch-on, "normal");
+		&:hover {
+			@include border-box($switch-on, "hovered");
+		}
+	}
+	slider {
+		@include button("normal", "normal");
+		margin: -1px;
+		&:focus {
+			@include button("normal", "toggled");
+		}
+		&:hover {
+			@include button("hovered", "hovered");
+		}
+		&:disabled {
+			@include button("disabled", "normal");
+		}
+	}
+}

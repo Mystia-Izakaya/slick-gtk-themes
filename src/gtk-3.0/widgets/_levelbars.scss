@@ -1,0 +1,32 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+levelbar {
+	trough {
+		@include border-box($trough-bg, "passive");
+		padding: 1px;
+	}
+	&.discrete {
+		block.empty {
+			@include border-box(transparent, "normal")
+		}
+		&.horizontal block + block {
+			margin-left: -1px;
+		}
+		&.vertical block + block {
+			margin-top: -1px;
+		}
+	}
+	&.horizontal block {
+		min-height: 8px;
+		&.filled {
+			@include gradient-box($levelbar-gradient, "toggled", "horizontal");
+		}
+	}
+	&.vertical block {
+		min-width: 8px;
+		&.filled {
+			@include gradient-box($levelbar-gradient, "toggled", "vertical");
+		}
+	}
+}

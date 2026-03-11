@@ -1,0 +1,20 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+
+calendar {
+	&.header {
+		@include gradient-box($calendar-header, "passive");
+		border-bottom-style: none;
+	}
+	&.highlight {
+		background-color: $selected-bg-color;
+		color: $selected-fg-color;
+	}
+	&.view {
+		@include border-box($theme-color-light, "passive");
+	}
+	&:selected {
+		background-image: none;
+		border: none;
+	}
+}

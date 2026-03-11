@@ -1,0 +1,79 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:color';
+
+//////////////
+// Treeview //
+//////////////
+// Jesus christ, this is the most painful widget to deal with, even
+// after reading the documentation for at least few times now I still
+// could not find any info on how to style stuff inside GtkTreeview.
+// 
+// There are few things I figured by trial and error:
+// 	- This widget is bugged as hell, and works in mysterious ways.
+// 	
+//	- Despite showing no child nodes in GTK Inspector, doing
+//	  treeview * { ... } will apply styles to things inside it,
+//	  which means it does have child nodes, but those are not
+//	  picked up by GTK Inspector
+//
+//	- Styling treeview itself will apply the styling to those
+//	  hidden child nodes as well. Blame GTK3 devs for this
+//	  weird and undocumented behaviour.
+//
+//	- GtkIconview seems to suffer from similar problems, but for
+//	  now I don't need to tinker with it.
+//
+//	- Some of the undocumented classes inside treeview include:
+//	  .view
+//	  .progressbar
+//	  .trough
+//
+//	- It can have checkboxes and radio buttons inside of it, but
+//	  they don't show up on GTK Inspector, they can be selected
+//	  like this:
+//	  treeview > check,
+//	  treeview > radio {
+//	  	...
+//	  }
+
+treeview {
+	border-color: color.mix($fg-color, $bg-color, 25%);
+	&:selected {
+		@include button("toggled", "toggled", $right: false, $left: false);
+		border: none;
+		border-color: color.mix($selected-fg-color, $selected-bg-color, 50%);
+	}
+	&:disabled {
+		-gtk-icon-effect: dim;
+		color: color.scale($fg-color, $alpha: -50%);
+		&:selected {
+			color: color.scale($selected-fg-color, $alpha: -50%);
+		}
+	}
+
+	.trough, .trough:selected {
+		padding: 2px;
+		@include border-box($trough-bg, "passive");
+		&:disabled {
+			@include border-box($trough-bg, "passive", $alpha: 0.5);
+		}
+	}
+	.progressbar, .progressbar:selected {
+		@include gradient-box($progressbar-gradient, "toggled");
+		&:disabled {
+			@include gradient-box($progressbar-gradient, "toggled", $alpha: 0.5);
+		}
+	}
+
+	header button + button {
+		margin-left: -1px;
+	}
+
+	check:disabled {
+		@include check-radio("disabled-check");
+	}
+	radio:disabled {
+		@include check-radio("disabled-radio");
+	}
+}

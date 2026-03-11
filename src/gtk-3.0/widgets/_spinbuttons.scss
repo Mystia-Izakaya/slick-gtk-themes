@@ -1,0 +1,25 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:color';
+
+spinbutton {
+	// Remove focus border from spin button, it's not needed since the entry has a focus border too.
+	button:focus {
+		@include button("normal", "normal");
+		&:hover {
+			@include button("hovered", "hovered");
+		}
+		&:active {
+			@include button("hovered-pressed", "hovered");
+		}
+	}
+	entry {
+		min-width: 34px;
+	}
+	// Buttons inside spinbutton do not support transparency, so we do this for transparency
+	&:not(:disabled) button:disabled {
+		@include button("disabled", "normal", $alpha: 0.5);
+		-gtk-icon-effect: dim; // For regular icons
+		color: color.scale($fg-color, $alpha: -50%) // For symbolic icons
+	}
+}

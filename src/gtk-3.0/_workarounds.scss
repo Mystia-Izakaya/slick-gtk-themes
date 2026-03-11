@@ -1,0 +1,83 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+
+// Fix border spacing for adjacent buttons
+.horizontal > button + button,
+.horizontal > toolbutton + toolbutton button,
+.horizontal > toolbutton + toolitem button,
+.horizontal > toolitem + toolbutton button,
+.horizontal > toolitem + toolitem button,
+.horizontal > entry + button,
+.horizontal > combobox + combobox button {
+	margin-left: -1px;
+}
+
+// Fix for small text inside rows
+row {
+	padding: 3px;
+	border: 1px solid transparent;
+}
+// Buttons inside activatable rows, really?
+row.activatable > button {
+	margin: -4px;
+}
+// Unfortunately this is needed because buttons inside rows can't be focused
+row.activatable:focus > button:not(:hover):not(:active):not(:checked):not(:selected):not(.suggested-action):not(.destructive-action) {
+	@include button("normal", "toggled");
+}
+
+// Things that shouldn't be highlighted on hover
+cellview:hover {
+	background-color: transparent;
+}
+
+// Prevent selection overload
+:selected {
+	& > &, & > box > & {
+		background: none;
+	}
+}
+
+// Revealer fix
+:not(searchbar) > revealer {
+	label {
+		padding: 0px 4px 0px 4px;
+	}
+	> box, > frame {
+		@include border-box($theme-color, "toggled");
+		padding: 1px;
+	}
+}
+
+// This fixes various stuff, like sidepane buttons in filechooser
+row > widget,
+revealer > widget {
+	background-color: transparent;
+}
+
+// This is a fix for the transparent menus in Firefox and its forks,
+// I have no idea why it needs special treatment or why even this
+// particular CSS element, GTK Inspector is pretty useless here, and
+// I had to resort to lengthy trial and error to find this fix.
+//textview text {
+//	padding: 1px;
+//	background-color: $theme-color;
+//}
+// Moved to _windows.scss
+
+stack:not(:only-child) scrolledwindow {
+	@include border-box($theme-color-light, "passive");
+	padding: 1px;
+}
+
+// Fixes text color in MATE control center and ccsm
+//#slab_section_style1:selected,
+//label:selected {
+//	background: $fg-color;
+//}
+// Forget it, this is not worth it
+
+.gtkstyle-fallback {
+	color: $fg-color;
+	background: $bg-color;
+}

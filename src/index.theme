@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=SlickCold
+Type=X-GNOME-Metatheme
+Comment=A slick GTK dark theme
+
+[X-GNOME-Metatheme]
+GtkTheme=SlickCold
+MetacityTheme=SlickCold
+IconTheme=mate
+CursorTheme=mate-black

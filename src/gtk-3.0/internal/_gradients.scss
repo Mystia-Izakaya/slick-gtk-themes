@@ -1,0 +1,239 @@
+// This file contains the color and gradient definitions.
+
+////// Gradients /////////////////////////////////////////////////
+//								//
+// This theme uses a custom but powerful gradient definitions,	//
+// all the information of the gradient (or gradients) are	//
+// contained in one big list. The first element of this list is	//
+// called the metadata element, it contains exactly three	//
+// elements. The first element is a string which can be either	//
+// "linear" or "radial" to specify a linear or a radial		//
+// gradient respectively. The second and third elements are	//
+// lists specifying the size and position of the gradient image //
+// respectively.						//
+//								//
+// For multiple gradients, simply nest them inside a list, but	//
+// make sure to separate them by whitespaces rather than commas.//
+//								//
+////// Syntax ////////////////////////////////////////////////////
+//								//
+// - For linear gradients:					//
+// (("linear", <width> <height>, <x-pos> <y-pos>), <angle>,	//
+// <color1> <stop1>, <color2> <stop2>, ...etc)			//
+//								//
+// - For radial gradients:					//
+// (("radial", <width> <height>, <x-pos>, <y-pos>),		//
+// <ellipse-width> <ellipse-height>,				//
+// <ellipse-x-pos> <ellipse-y-pos>, <color1> <stop1>,		//
+// <color2> <stop2>, ...etc)					//
+//								//
+//////////////////////////////////////////////////////////////////
+
+@use "sass:color";
+
+////////////////////
+// General colors //
+////////////////////
+
+$bg-color: #25252a;						// General color for the background of an element
+$fg-color: #fcfcfc;						// General color for the foreground of an element, e.g.: text, symbolic icons, etc.
+$selected-bg-color: #0d377c;					// General color for the background of a selected element
+$selected-fg-color: #ffffff;					// General color for the foreground of a selected element
+
+$theme-color: #0a0a0d;						// General theme color
+$theme-color-light: color.mix($theme-color, white, 95%);	// Lighter version of theme color
+
+$border-passive-color: #3f3f3f;					// General border color
+$iogr-color: color.mix($bg-color, black, 75%);			// Inset, Outset, Groove and Ridge border colors
+
+// Misc
+$link-color: color.mix($fg-color, #1327ec);
+$visited-link-color: color.mix($fg-color, #8713ac);
+$underline-error-color: #ff0000;
+$attention-color: #ff0000;
+
+////////////////////////
+// Window decorations //
+////////////////////////
+// Note these only applies to CSD window decorations
+
+$headerbar-focused-gradient: (
+	(("radial", 100% 100%, 50% 50%), 100% 50%, 50% 100%, #002e83, transparent)
+	(("linear", 100% 100%, 50% 50%), 180deg, #565656, #202020 50%, #000000 50%)
+);
+$headerbar-unfocused-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #565656, #404040 50%, #000000 50%);
+
+$decoration-border-focused: #7c7c7c;
+$decoration-border-unfocused: #424242;
+
+/////////////////
+// Backgrounds //
+/////////////////
+
+$notebook-bg: $theme-color;
+
+/////////////
+// Borders //
+/////////////
+
+$border: (
+	"normal": (#5d5d5d, #3a3a3a),
+	"hovered": (#3e8cd3, #2670cc 50%, #0448c2 50%, #11b8ff),
+	"toggled": (#3e8cd3, #2362b9 50%, #1d57b2 50%, #275cbd),
+	"passive": ($border-passive-color),
+	"focused": (#b0b0b0, #808080 50%, $decoration-border-focused calc(50% + 1px)),
+	"unfocused": (#b0b0b0, #808080 50%, $decoration-border-unfocused calc(50% + 1px)),
+	"decoration-unfocused": ($decoration-border-unfocused),
+	"decoration-focused": ($decoration-border-focused),
+	"suggested": (#5d5dfd, #3a3a5a),
+	"suggested-hovered": (#3e8cd3, #2670cc 50%, #0448c2 50%, #11b8ff),
+	"destructive": (#fd5d5d, #5a3a3a),
+	"destructive-hovered": (#d3003e, #cc0026 50%, #c20004 50%, #ff0011),
+	"destructive-focused": (#d3003e, #b90023 50%, #b2001d 50%, #bd0027)
+);
+
+////////////////
+// Separators //
+////////////////
+
+$separator-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #0448c2, #11b8ff, #0448c2);
+
+//////////
+// Bars //
+//////////
+
+// Menubars
+$menubar-gradient: (
+	(("linear", 100% 60%, 50% 100%), 180deg, transparent, color.scale(black, $alpha: -80%), transparent)
+	(("linear", 100% 100%, 50% 50%), 180deg, #202327, #121314)
+);
+
+$menu-gradient: (
+	(("radial", 100% 100%, 50% 50%), 100% 150%, 50% -20%, color.scale(color.mix($bg-color, white), $alpha: -90%), transparent)
+	(("linear", 100% 100%, 50% 50%), 180deg, transparent, color.scale(black, $alpha: -50%), color.scale(black, $alpha: -10%))
+	(("linear", 100% 100%, 50% 50%), 90deg, transparent, $bg-color 3px, $bg-color 23px, transparent 24px)
+	(("linear", 100% 100%, 50% 50%), 0deg, $theme-color)
+);
+$menu-border-color: #565656;
+
+// Toolbars
+$toolbar-gradient: (
+	(("linear", 100% 60%, 50% 100%), 180deg, transparent, color.scale(black, $alpha: -80%), transparent)
+	(("linear", 100% 100%, 50% 50%), 180deg, #333639, #1E1F20)
+);
+
+//////////
+// Tabs //
+//////////
+
+$tab-gradient: (#323232, #1f1f1f 50%, #000000 70%);
+$tab-glow-gradient: (#0d479f, transparent);
+$tab-selected-gradient: (#0d479f, #000000, $notebook-bg);
+
+$tab-border-glow-gradient: (#408dd3, $border-passive-color);
+
+/////////////
+// Widgets //
+/////////////
+
+// Buttons
+$button: (
+	"normal": (
+		(("radial", 100% 50%, 50% 0%), 66.66% 100%, 50% 0%, #4b4b4b 20%, #1c1c1c)
+		(("radial", 100% 51%, 50% 100%), 66.66% 50%, 50% 101%, #002e83, #000000) // hack
+	),
+	"hovered": (
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #16609e, #032c70, #0851b8)
+	),
+	"hovered-pressed": (
+		(("linear", 100% 100%, 50% 50%), 180deg, rgba(black, 0.5), rgba(black, 0.25))
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #16609e, #032c70, #0851b8)
+	),
+	"toggled": (
+		(("linear", 100% 100%, 50% 50%), 90deg, rgba(black, 0.4), transparent 50%, rgba(black, 0.4))
+		(("linear", 100% 100%, 50% 50%), 180deg, #1c77cc, #1f5db9 50%, #1851b0 50%, #1850a4)
+	),
+	"toggled-pressed": (
+		(("linear", 100% 100%, 50% 50%), 180deg, rgba(black, 0.5), rgba(black, 0.25))
+		(("linear", 100% 100%, 50% 50%), 90deg, rgba(black, 0.4), transparent 50%, rgba(black, 0.4))
+		(("linear", 100% 100%, 50% 50%), 180deg, #1c77cc, #1f5db9 50%, #1851b0 50%, #1850a4)
+	),
+	"suggested": (
+		(("radial", 100% 50%, 50% 0%), 66.66% 100%, 50% 0%, #4b4bcc 20%, #1c1c5c)
+		(("radial", 100% 100%, 50% 100%), 66.66% 50%, 50% 101%, #002e83, #000000)
+	),
+	"suggested-hovered": (
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #4b6bcc, #032c70, #0851b8)
+	),
+	"suggested-pressed": (
+		(("linear", 100% 100%, 50% 50%), 180deg, rgba(black, 0.5), rgba(black, 0.25))
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #4b6bcc, #032c70, #0851b8)
+	),
+	"destructive": (
+		(("radial", 100% 50%, 50% 0%), 66.66% 100%, 50% 0%, #cc2b2b 20%, #5c1c1c)
+		(("radial", 100% 100%, 50% 100%), 66.66% 50%, 50% 101%, #830e00, #000000)
+	),
+	"destructive-hovered": (
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #9e2016, #700c03, #b80108)
+	),
+	"destructive-pressed": (
+		(("linear", 100% 100%, 50% 50%), 180deg, rgba(black, 0.5), rgba(black, 0.25))
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, black, transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #9e2016, #700c03, #b80108)
+	),
+	"disabled": (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e 50%)
+);
+
+// Troughs
+$trough-bg: color.mix($theme-color, black, 50%);
+
+// Progressbars
+$progressbar-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #16609e, #032c70, #0851b8);
+
+// Levelbars
+$levelbar-gradient: (
+	(("linear", 100% 100%, 50% 50%), 90deg, rgba(black, 0.5), transparent 50%, rgba(black, 0.5))
+	(("linear", 100% 100%, 50% 50%), 180deg, #1c77cc, #1f5db9 50%, #1851b0 50%, #1850a4)
+);
+
+// Scales
+$scale-highlight-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #60b0e9, #0811b8);
+$slider: (
+	"normal": (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e 50%, #000000 50%),
+	"hovered": (
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, rgba(black, 0.5), transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, rgba(black, 0.5), transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #1a76cc, #1c59b2 50%, #164894 50%)
+	),
+	"hovered-pressed": (
+		(("linear", 100% 100%, 50% 50%), 180deg, rgba(black, 0.5), rgba(black, 0.25))
+		(("radial", 100% 100%, 50% 50%), 50% 100%, -33% 50%, rgba(black, 0.5), transparent)
+		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, rgba(black, 0.5), transparent)
+		(("linear", 100% 100%, 50% 50%), 180deg, #1a76cc, #1c59b2 50%, #164894 50%)
+	),
+	"disabled": (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e 50%)
+);
+
+// Switches
+$switch-on: #4A90D9;
+$switch-off: #686868;
+
+// Calendars
+$calendar-header: (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e);
+
+// MATE Panel
+// Note: the panel does not support multiple gradients, nor does it seem to support changing
+// the gradient size or position.
+$panel-gradient: (color.scale(#4e4f50, $alpha: -10%), color.scale(#20202a, $alpha: -10%));
+$panel-edge: color.scale($border-passive-color, $alpha: -75%);

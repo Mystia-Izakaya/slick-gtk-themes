@@ -1,0 +1,69 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:color';
+
+arrow {
+	-gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+	min-width: 16px;
+	min-height: 16px;
+	&:hover {
+		background: none;
+	}
+	tabs & {
+		border: transparent 1px solid;
+	}
+	tabs &:hover {
+		@include button("hovered", "hovered");
+	}
+	tabs &:active {
+		@include button("hovered-pressed", "hovered");
+	}
+
+	&.horizontal {
+		-gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+		&:checked {
+			-gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+		}
+	}
+
+	&.left {
+		-gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
+	}
+
+	&.right {
+		-gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+	}
+
+	&.top, &.up {
+		-gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+	}
+
+	&.bottom, &.down {
+		-gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+	}
+}
+
+// Tab arrows
+notebook header {
+	&.top tabs, &.bottom tabs {
+		arrow.up {
+			-gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+		}
+		arrow.down {
+			-gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
+		}
+	}
+	&.right tabs, &.left tabs {
+		arrow.up {
+			-gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+		}
+		arrow.down {
+			-gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+		}
+	}
+}
+
+// Opacity doesn't apply to arrows, this is needed as a fix
+arrow:disabled {
+	color: color.scale($fg-color, $alpha: -50%);
+}

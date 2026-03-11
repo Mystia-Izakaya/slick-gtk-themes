@@ -1,0 +1,139 @@
+@use 'internal/gradients' as *;
+@use 'internal/mixins' as *;
+
+.csd:not(.popup):not(tooltip) {
+	// This is for the main CSD window, the decoration is outside the window.
+	// The top border of the main CSD window is in contact with the bottom border of the headerbar
+	@include border-box(transparent, "decoration-focused");
+	border-top-style: none;
+	border-width: 2px;
+	&:backdrop {
+		@include border-box(transparent, "decoration-unfocused");
+		border-top-style: none;
+		border-width: 2px;
+	}
+
+	> decoration {
+		margin: 12px;	// This controls the CSD resize margin
+		@include border-box(transparent, "decoration-focused");
+		background-color: black;
+		padding: 1px;
+		&:backdrop {
+			@include border-box(transparent, "decoration-unfocused");
+		}
+	}
+
+	> headerbar {
+		@include gradient-box($headerbar-focused-gradient, "focused", $bottom: false);
+		padding: 2px 5px 1px 5px;
+		margin: -2px -2px 0px -2px;
+		* {
+			-gtk-icon-style: requested;
+		}
+		&:backdrop {
+			@include gradient-box($headerbar-unfocused-gradient, "unfocused", $bottom: false);
+		}
+		button:not(.titlebutton) {
+			padding-top: 0px;
+			padding-bottom: 0px;
+			&.text-button {
+				min-width: 60px;
+			}
+			min-height: 18px;
+			margin-top: -1px;
+			margin-bottom: -1px;
+		}
+		separator {
+			margin-top: -1px;
+			margin-bottom: -1px;
+		}
+	}
+
+	> :not(decoration):not(headerbar) {
+		padding: 3px;
+	}
+
+	&.maximized {
+		padding: 0px;
+		background-image: none;
+		border: none;
+		> headerbar {
+			@include gradient-box($headerbar-focused-gradient, "focused", $right: false, $left: false);
+			padding: 2px;
+			margin: 0px;
+		}
+		> :not(decoration):not(headerbar) {
+			padding: 0px;
+		}
+	}
+}
+
+////////////////////////////////////////////////
+// Minimize, maximize, and close titlebuttons //
+////////////////////////////////////////////////
+
+button.titlebutton {
+	min-height: 24px;
+	min-width: 34px;
+	background-color: transparent;
+	background-position: center;
+	background-size: 100% 100%;
+	border-color: transparent;
+	border-image: none;
+	border-style: solid;
+	border-width: 0px;
+	padding: 0px;
+
+	// This hides the builtin titlebutton icons
+	image {
+		-gtk-icon-style: symbolic;
+		color: transparent;
+		background: none;
+		border: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	@each $type in (minimize, maximize, close) {
+		&.#{$type} {
+			background-image: url("assets/titlebar/button-#{$type}-focused.png");
+			&:backdrop {
+				background-image: url("assets/titlebar/button-#{$type}-unfocused.png");
+			}
+			&:hover {
+				background-image: url("assets/titlebar/button-#{$type}-focused-active.png");
+			}
+			&:hover:backdrop {
+				background-image: url("assets/titlebar/button-#{$type}-focused.png");
+			}
+			&:active {
+				background-image: url("assets/titlebar/button-#{$type}-pressed.png");
+			}
+		}
+	}
+	.maximized &.maximize {
+		background-image: url("assets/titlebar/button-unmaximize-focused.png");
+		&:backdrop {
+			background-image: url("assets/titlebar/button-unmaximize-unfocused.png");
+		}
+		&:hover {
+			background-image: url("assets/titlebar/button-unmaximize-focused-active.png");
+		}
+		&:hover:backdrop {
+			background-image: url("assets/titlebar/button-unmaximize-focused.png");
+		}
+		&:active {
+			background-image: url("assets/titlebar/button-unmaximize-pressed.png");
+		}
+	}
+
+	// Increase specificity so it's not overrided by _workarounds.scss
+	&, & + &:not(:last-child) {
+		margin: -4px -6px -4px 0px;
+	}
+	&:last-child {
+		// Increase clickable area, this fixes a bug where moving the mouse to the top right corner doesn't cover the close button
+		border-width: 0px 4px 0px 0px;
+		margin: -4px -4px -4px 0px;
+	}
+}

@@ -1,0 +1,22 @@
+@use '../internal/gradients' as *;
+@use '../internal/mixins' as *;
+@use 'sass:map';
+
+colorswatch {
+	overlay {
+		&:hover {
+			background: none;
+			border-image: linear-gradient(to bottom, map.get($border, "hovered")) 1 / 1px;
+		}
+		&:selected {
+			border-image: linear-gradient(to bottom, map.get($border, "toggled")) 1 / 1px;
+		}
+	}
+	&:selected overlay {
+		background: none;
+	}
+	&#add-color-button overlay {
+		background: none;
+		border: none;
+	}
+}
