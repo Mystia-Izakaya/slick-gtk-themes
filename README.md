@@ -10,6 +10,8 @@ The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
 
 Installation
 ============
+Download the latest release and unpack to `~/.themes`.
+Alternatively you can do this:
 ```
 git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
 cd slick-gtk-themes
