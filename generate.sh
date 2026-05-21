@@ -2,7 +2,9 @@
 
 set -e
 
-COMPILER="./compiler/dart-sass/sass"
+DART_SASS_VERSION="1.99.0"
+
+COMPILER="./dart-sass/sass"
 
 # Check if ImageMagick is installed
 if [ ! "$(which magick)" ]; then
@@ -14,23 +16,27 @@ fi
 # Check that we're in the directory the script is in
 if [ ! -f "${PWD}/$(basename $0)" ]; then
 	echo "You can't run this script here!"
-	exit 1
-fi
-
-# Copy relevant theme files
-if [ -d ./SlickCold ] && [ -d ./SlickFire ]; then
-	echo "Removing './SlickCold' and './SlickFire'..."
-	rm -r "./SlickCold" "./SlickFire";
-fi
-if [ ! -d ./SlickCold ] && [ ! -d ./SlickFire ]; then
-	echo "Copying files..."
-	cp -r "./src" "./SlickCold"
-	cp -r "./src" "./SlickFire"
-else
-	echo "Stale directories detected, you must do manual cleanup."
 	echo "Aborting..."
 	exit 1
 fi
+
+# Download and unpack the dart-sass compiler if it doesn't exist or if the version doesn't match
+if [ "$($COMPILER --version 2> /dev/null)" != "$DART_SASS_VERSION" ]; then
+	echo "Downloading dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz..."
+	[ -d "./dart-sass" ] && echo "Removing old files..." && rm -r "./dart-sass"
+	mkdir -p "./dart-sass"
+	wget -q -P "./dart-sass" "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+	echo "Unpacking dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz..."
+	tar xf "./dart-sass/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+	rm "./dart-sass/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+fi
+
+# Copy relevant theme files
+[ -d "./SlickCold" ] && echo "Removing old directory..." && rm -r "./SlickCold"
+[ -d "./SlickFire" ] && echo "Removing old directory..." && rm -r "./SlickFire"
+echo "Copying files..."
+cp -r "./src" "./SlickCold"
+cp -r "./src" "./SlickFire"
 
 # Transform SlickCold to SlickFire
 echo "Transforming SlickCold..."
@@ -43,10 +49,10 @@ sed -i "s/DarkCold/DarkFire/g;s/OriginalSeed/infinity0/g" "./SlickFire/metacity-
 
 # Compile Sass to CSS
 echo "Compiling Sass..."
-"$COMPILER" --no-source-map "./SlickCold/gtk-3.0/gtk.scss" "./SlickCold/gtk-3.0/gtk.css"
-"$COMPILER" --no-source-map "./SlickCold/gtk-3.0/chrome.scss" "./SlickCold/chrome.css"
-"$COMPILER" --no-source-map "./SlickFire/gtk-3.0/gtk.scss" "./SlickFire/gtk-3.0/gtk.css"
-"$COMPILER" --no-source-map "./SlickFire/gtk-3.0/chrome.scss" "./SlickFire/chrome.css"
+$COMPILER --no-source-map "./SlickCold/gtk-3.0/gtk.scss" "./SlickCold/gtk-3.0/gtk.css"
+$COMPILER --no-source-map "./SlickCold/gtk-3.0/chrome.scss" "./SlickCold/chrome.css"
+$COMPILER --no-source-map "./SlickFire/gtk-3.0/gtk.scss" "./SlickFire/gtk-3.0/gtk.css"
+$COMPILER --no-source-map "./SlickFire/gtk-3.0/chrome.scss" "./SlickFire/chrome.css"
 
 # Clean up unneeded files
 echo "Cleaning up..."
