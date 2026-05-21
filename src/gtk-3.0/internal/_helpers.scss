@@ -17,7 +17,7 @@
 }
 
 @function rotate-list($list, $forward: true) {
-	@if meta.type-of($list) == "list" {	
+	@if meta.type-of($list) == "list" {
 		@if $forward {
 			$last: list.nth($list, list.length($list));
 			$sliced-list: list-slice($list, 1, list.length($list) - 1);

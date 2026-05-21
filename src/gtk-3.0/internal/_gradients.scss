@@ -2,7 +2,7 @@
 
 ////// Gradients /////////////////////////////////////////////////
 //								//
-// This theme uses a custom but powerful gradient definitions,	//
+// This theme uses a complex but powerful gradient definitions,	//
 // all the information of the gradient (or gradients) are	//
 // contained in one big list. The first element of this list is	//
 // called the metadata element, it contains exactly three	//
@@ -55,9 +55,10 @@ $attention-color: #ff0000;
 ////////////////////////
 // Window decorations //
 ////////////////////////
-// Note these only applies to CSD window decorations
+// Note these only apply to CSD window decorations
 
 $headerbar-focused-gradient: (
+	(("linear", 100% 100%, 50% 50%), 0deg, black 1px, transparent 1px)
 	(("radial", 100% 100%, 50% 50%), 100% 50%, 50% 100%, #002e83, transparent)
 	(("linear", 100% 100%, 50% 50%), 180deg, #565656, #202020 50%, #000000 50%)
 );
@@ -65,6 +66,14 @@ $headerbar-unfocused-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #565656,
 
 $decoration-border-focused: #7c7c7c;
 $decoration-border-unfocused: #424242;
+
+// hacky thing (don't worry about it)
+$black-borders-gradient: (
+	(("linear", 100% 100%, 50% 100%), 0deg, black 1px, transparent 1px)
+	(("linear", 100% 100%, 50% 100%), 90deg, black 1px, transparent 1px)
+	(("linear", 100% 100%, 50% 100%), 180deg, black 1px, transparent 1px)
+	(("linear", 100% 100%, 50% 100%), 270deg, black 1px, transparent 1px)
+);
 
 /////////////////
 // Backgrounds //
@@ -192,7 +201,7 @@ $button: (
 		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, black, transparent)
 		(("linear", 100% 100%, 50% 50%), 180deg, #9e2016, #700c03, #b80108)
 	),
-	"disabled": (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e 50%)
+	"disabled": (("radial", 100% 100%, 50% 50%), 100% 100%, 50% 50%, #3d3d3d, #2e2e2e 50%)
 );
 
 // Troughs
@@ -222,7 +231,7 @@ $slider: (
 		(("radial", 100% 100%, 50% 50%), 50% 100%, 133% 50%, rgba(black, 0.5), transparent)
 		(("linear", 100% 100%, 50% 50%), 180deg, #1a76cc, #1c59b2 50%, #164894 50%)
 	),
-	"disabled": (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e 50%)
+	"disabled": (("radial", 100% 100%, 50% 50%), 100% 100%, 50% 50%, #3d3d3d, #2e2e2e 50%)
 );
 
 // Switches

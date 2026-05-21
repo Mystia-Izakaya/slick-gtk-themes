@@ -1,6 +1,7 @@
 // Most of these are small functions which are chained together to create bigger
 // more complicated functions.
-// The end functions you should be interacting directly with include:
+//
+// The functions which you can interact with directly include:
 //
 //  generate-gradient-images($state-list, $orientation)
 //  generate-gradient-sizes($state-list, $orientation, $top, $right, $bottom, $left)
@@ -11,6 +12,7 @@
 //  generate-border-positions($orientation, $top, $right, $bottom, $left)
 //
 //  reduce-alpha($list, $a);
+
 @use 'sass:color';
 @use 'sass:list';
 @use 'sass:math';

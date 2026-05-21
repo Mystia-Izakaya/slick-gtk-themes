@@ -14,8 +14,8 @@
 // 	
 //	- Despite showing no child nodes in GTK Inspector, doing
 //	  treeview * { ... } will apply styles to things inside it,
-//	  which means it does have child nodes, but those are not
-//	  picked up by GTK Inspector
+//	  which means it does have child nodes, but they are not
+//	  picked up by GTK Inspector.
 //
 //	- Styling treeview itself will apply the styling to those
 //	  hidden child nodes as well. Blame GTK3 devs for this

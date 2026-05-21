@@ -12,6 +12,15 @@
 	margin-left: -1px;
 }
 
+box.vertical > modelbutton {
+	margin-bottom: -1px;
+}
+
+// Seriously? why are "horizontal grids" used to arrange items vertically?
+grid.horizontal > button + button {
+	margin-left: 0px;
+}
+
 // Fix for small text inside rows
 row {
 	padding: 3px;
@@ -21,7 +30,7 @@ row {
 row.activatable > button {
 	margin: -4px;
 }
-// Unfortunately this is needed because buttons inside rows can't be focused
+// Unfortunately this is needed because buttons inside rows can't be focused without it
 row.activatable:focus > button:not(:hover):not(:active):not(:checked):not(:selected):not(.suggested-action):not(.destructive-action) {
 	@include button("normal", "toggled");
 }
@@ -51,6 +60,7 @@ cellview:hover {
 
 // This fixes various stuff, like sidepane buttons in filechooser
 row > widget,
+tab > widget,
 revealer > widget {
 	background-color: transparent;
 }

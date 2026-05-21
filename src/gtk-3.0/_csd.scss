@@ -4,11 +4,11 @@
 .csd:not(.popup):not(tooltip) {
 	// This is for the main CSD window, the decoration is outside the window.
 	// The top border of the main CSD window is in contact with the bottom border of the headerbar
-	@include border-box(transparent, "decoration-focused");
+	@include gradient-box($black-borders-gradient, "decoration-focused");
 	border-top-style: none;
 	border-width: 2px;
 	&:backdrop {
-		@include border-box(transparent, "decoration-unfocused");
+		@include gradient-box($black-borders-gradient, "decoration-unfocused");
 		border-top-style: none;
 		border-width: 2px;
 	}
