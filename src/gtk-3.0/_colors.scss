@@ -1,0 +1,26 @@
+@use 'internal/gradients' as *;
+
+// Some GNOME apps rely on named colors to be exported
+
+@define-color theme_fg_color #{"" + $fg-color};
+@define-color theme_text_color #{"" + $fg-color};
+@define-color theme_bg_color #{"" + $bg-color};
+@define-color theme_base_color #{"" + $theme-color};
+@define-color theme_selected_bg_color #{"" + $selected-bg-color};
+@define-color theme_selected_fg_color #{"" + $selected-fg-color};
+@define-color theme_tooltip_bg_color #{"" + $bg-color};
+@define-color theme_tooltip_fg_color #{"" + $fg-color};
+@define-color insensitive_bg_color #{"" + $bg-color};
+@define-color insensitive_fg_color #{"" + $fg-color};
+@define-color insensitive_base_color #{"" + $theme-color};
+@define-color theme_unfocused_fg_color #{"" + $fg-color};
+@define-color theme_unfocused_text_color #{"" + $fg-color};
+@define-color theme_unfocused_bg_color #{"" + $bg-color};
+@define-color theme_unfocused_base_color #{"" + $theme-color};
+@define-color theme_unfocused_selected_bg_color #{"" + $selected-bg-color};
+@define-color theme_unfocused_selected_fg_color #{"" + $selected-fg-color};
+@define-color unfocused_insensitive_color #{"" + $theme-color-light};
+@define-color borders #{"" + $border-passive-color};
+@define-color unfocused_borders #{"" + $border-passive-color};
+@define-color content_view_bg #{"" + $bg-color};
+@define-color text_view_bg #{"" + $bg-color};
