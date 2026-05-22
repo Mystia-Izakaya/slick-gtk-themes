@@ -10,6 +10,11 @@
 	border: none;
 }
 
+// Icon shadows cause massive lag in caja navigation window, especially with lots of icons. Disable icon shadows there for now.
+.caja-navigation-window scrolledwindow widget > * {
+	-gtk-icon-shadow: none;
+}
+
 // MATE panel
 .mate-panel-menu-bar {
 	// Remove the drop down arrows from panel buttons
@@ -75,4 +80,9 @@
 	viewport button {
 		min-height: 22px;
 	}
+}
+
+// This fixes Marco's Alt-Tab popup
+window > frame > box > grid > image {
+	-gtk-icon-shadow: none;
 }
