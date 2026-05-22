@@ -4,6 +4,10 @@
 	}
 }
 
+spinner:not(:checked):not(:active) {
+	opacity: 0;
+}
+
 spinner:checked {
 	//-gtk-icon-source: -gtk-icontheme("process-working-symbolic");
 	animation: icon-spin 1s linear infinite;
