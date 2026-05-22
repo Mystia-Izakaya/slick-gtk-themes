@@ -1,7 +1,8 @@
 @use 'internal/gradients' as *;
 @use 'internal/mixins' as *;
 
-.csd:not(.popup):not(tooltip) {
+.csd:not(.popup):not(tooltip),
+.solid-csd:not(.popup):not(tooltip) /* Non-composited CSD */ {
 	// This is for the main CSD window, the decoration is outside the window.
 	// The top border of the main CSD window is in contact with the bottom border of the headerbar
 	@include gradient-box($black-borders-gradient, "decoration-focused");
@@ -14,7 +15,6 @@
 	}
 
 	> decoration {
-		margin: 12px;	// This controls the CSD resize margin
 		@include border-box(transparent, "decoration-focused");
 		background-color: black;
 		padding: 1px;
@@ -66,6 +66,10 @@
 			padding: 0px;
 		}
 	}
+}
+
+.csd:not(.popup):not(tooltip) > decoration {
+	margin: 12px;	// This controls the CSD resize margin, this is purely a functional and not a visual change
 }
 
 ////////////////////////////////////////////////
