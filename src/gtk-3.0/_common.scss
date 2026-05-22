@@ -7,6 +7,9 @@
 	border-color: $border-passive-color;		// Set the default border color whenever a border is present
 	color: $fg-color;				// Set the default foreground color
 
+	-gtk-icon-shadow: black 1px 1px 2px;		// Icon shadows
+	text-shadow: black 1px 1px 2px;			// Text shadows
+
 	-gtk-icon-style: regular;					// Disable symbolic icons. Note: they are re-enabled in few places later.
 	-GtkTextView-error-underline-color: $underline-error-color;	// Error underline color
 
