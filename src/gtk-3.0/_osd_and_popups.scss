@@ -1,3 +1,16 @@
+// Note to future self: this is the CSS node tree of Marco Alt+Tab popup:
+//
+// window (.osd added when composited)
+// └── frame
+//     └── box (.vertical)
+//         ├── grid
+//         │   ├── image
+//         │   ├── ...
+//         │   ├── image
+//         │   └── ? (not sure if there's something else here)
+//         └── label
+//
+
 @use 'internal/gradients' as *;
 @use 'internal/mixins' as *;
 @use 'internal/functions' as *;

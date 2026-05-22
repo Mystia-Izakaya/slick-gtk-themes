@@ -98,3 +98,8 @@ stack:not(:only-child) scrolledwindow {
 	color: $fg-color;
 	background: $bg-color;
 }
+
+// This fixes Marco's Alt-Tab popup
+window > frame > box > grid > image {
+	-gtk-icon-shadow: none;
+}
