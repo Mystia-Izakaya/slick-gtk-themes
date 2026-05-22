@@ -11,7 +11,6 @@
 .horizontal > combobox + combobox button {
 	margin-left: -1px;
 }
-
 box.vertical > modelbutton {
 	margin-bottom: -1px;
 }
@@ -75,6 +74,7 @@ revealer > widget {
 //}
 // Moved to _windows.scss
 
+// Lighten scrolledwindows inside notebooks
 stack:not(:only-child) scrolledwindow {
 	@include border-box($theme-color-light, "passive");
 	padding: 1px;
@@ -85,8 +85,15 @@ stack:not(:only-child) scrolledwindow {
 //label:selected {
 //	background: $fg-color;
 //}
-// Forget it, this is not worth it
+// Forget it, this is not worth it, I couldn't get this to work
 
+// Fix the annoying blackening of unfocused selected icons in caja
+.view:active {
+	color: $selected-fg-color;
+	background-color: $selected-bg-color;
+}
+
+// Fallback styles
 .gtkstyle-fallback {
 	color: $fg-color;
 	background: $bg-color;
