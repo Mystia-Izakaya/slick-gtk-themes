@@ -47,16 +47,16 @@
 		margin: 0px;
 		box-shadow: none;
 		> menuitem > image {
-			-gtk-icon-style: symbolic;
-			color: #87A556;
+			//-gtk-icon-style: symbolic;
+			color: #87A556;		// Green MATE color
 		}
 	}
 
 	// The brisk menu button
 	button.brisk-button {
 		image {
-			-gtk-icon-style: symbolic;
-			color: #87A556;
+			//-gtk-icon-style: symbolic;
+			color: #87A556;		// Green MATE color
 		}
 	}
 
