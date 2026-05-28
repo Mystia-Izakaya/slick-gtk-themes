@@ -44,6 +44,7 @@ find "./SlickFire" -regex ".*\.png\|.*\.jpg" -type f -print0 | xargs -0 -I{} mag
 find "./SlickFire" -regex ".*\.png\|.*\.jpg" -type f -print0 | xargs -0 -I{} mv "{}.out" "{}"
 sed -i "s/#\([0-9A-Fa-f]\{2\}\)\([0-9A-Fa-f]\{2\}\)\([0-9A-Fa-f]\{2\}\)/#\3\1\1/g" "./SlickFire/gtk-3.0/internal/_gradients.scss"
 sed -i "s/#\([0-9A-Fa-f]\{2\}\)\([0-9A-Fa-f]\{2\}\)\([0-9A-Fa-f]\{2\}\)/#\3\1\1/g" "./SlickFire/gtk-2.0/gtkrc"
+sed -i "s/SlickCold/SlickFire/g" "./SlickFire/metacity-1/metacity-theme-1.xml" "./SlickFire/metacity-1/metacity-theme-3.xml"
 sed -i "s/DarkCold/DarkFire/g;s/OriginalSeed/infinity0/g" "./SlickFire/metacity-1/metacity-theme-1.xml" "./SlickFire/metacity-1/metacity-theme-3.xml"
 
 # Compile Sass to CSS
