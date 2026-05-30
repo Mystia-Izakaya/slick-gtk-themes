@@ -61,6 +61,9 @@
 			@include gradient-box($headerbar-focused-gradient, "focused", $right: false, $left: false);
 			padding: 2px;
 			margin: 0px;
+			&:backdrop {
+				@include gradient-box($headerbar-unfocused-gradient, "unfocused", $right: false, $left: false);
+			}
 		}
 		> :not(decoration):not(headerbar) {
 			padding: 0px;
