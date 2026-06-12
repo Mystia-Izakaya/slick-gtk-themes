@@ -45,9 +45,9 @@ style "default"{
 	GtkWidget::cursor_color			= "#ffffff"
 	GtkWidget::secondary_cursor_color	= "#ffffff"
 
-	fg[NORMAL]		= "#6EBEFE"
-	fg[PRELIGHT]		= "#6EBEFE"
-	fg[ACTIVE]		= "#6EBEFE"
+	fg[NORMAL]		= "#FFFFFF"
+	fg[PRELIGHT]		= "#FFFFFF"
+	fg[ACTIVE]		= "#FFFFFF"
 	fg[SELECTED]		= "#909090"
 	fg[INSENSITIVE]		= "#909090"
 
@@ -63,10 +63,10 @@ style "default"{
 	base[SELECTED]		= "#0d377c"
 	base[INSENSITIVE]	= "#060A0F"
 
-	text[NORMAL]		= "#6EBEFE"
-	text[PRELIGHT]		= "#6EBEFE"
-	text[ACTIVE]		= "#6EBEFE"
-	text[SELECTED]		= "#6EBEFE"
+	text[NORMAL]		= "#FFFFFF"
+	text[PRELIGHT]		= "#FFFFFF"
+	text[ACTIVE]		= "#FFFFFF"
+	text[SELECTED]		= "#FFFFFF"
 	text[INSENSITIVE]	= "#606060"
 
 	engine "pixmap"{
@@ -838,7 +838,7 @@ image
 
 style "progressbar" {
     fg[PRELIGHT] 	= "#6EBEFE"
-    text[PRELIGHT] = "#6EBEFE"
+    text[PRELIGHT] = "#FFFFFF"
     xthickness 	= 2
     ythickness 	= 2
 
@@ -1047,7 +1047,7 @@ stretch	= TRUE
 style "menuitem" = "default"
 {
     xthickness		= 1
-    fg[PRELIGHT] 	= "#6EBEFE"
+    fg[PRELIGHT] 	= "#FFFFFF"
     text[PRELIGHT]	= "#949494"
 
     engine "pixmap"
@@ -1093,13 +1093,13 @@ style "tearoffmenuitem" = "menuitem"
 }
 
 style "menubar"{
-    fg[NORMAL]		= "#6EBEFE"
-    text[NORMAL]		= "#6EBEFE"
-    fg[PRELIGHT]		= "#6EBEFE"
-    fg[ACTIVE]		= "#6EBEFE"
+    fg[NORMAL]		= "#FFFFFF"
+    text[NORMAL]		= "#FFFFFF"
+    fg[PRELIGHT]		= "#FFFFFF"
+    fg[ACTIVE]		= "#FFFFFF"
     fg[INSENSITIVE]		= "#909090"
     bg[INSENSITIVE]	= "#3f3f3f"
-    text[PRELIGHT]		= "#6EBEFE"
+    text[PRELIGHT]		= "#FFFFFF"
 
     xthickness	= 1
     ythickness	= 1
