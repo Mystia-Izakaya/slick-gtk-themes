@@ -1,5 +1,6 @@
 @use 'internal/gradients' as *;
 @use 'internal/mixins' as *;
+@use 'sass:color';
 
 // Fix border spacing for adjacent buttons
 .horizontal > button + button,
@@ -91,6 +92,12 @@ stack:not(:only-child) scrolledwindow {
 .view:active {
 	color: $selected-fg-color;
 	background-color: $selected-bg-color;
+}
+
+// Highlight lables
+label.highlight {
+	@include button("toggled", "toggled", $right: false, $left: false);
+	border: none;
 }
 
 // Fallback styles

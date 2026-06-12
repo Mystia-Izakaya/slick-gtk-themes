@@ -229,3 +229,15 @@ textview {
 		background-color: $theme-color;
 	}
 }
+
+//////////////
+// Sidebars //
+//////////////
+
+.sidebar {
+	padding: 1px;
+	@include border-box($theme-color, "normal");
+	> label {
+		padding: 2px;
+	}
+}
