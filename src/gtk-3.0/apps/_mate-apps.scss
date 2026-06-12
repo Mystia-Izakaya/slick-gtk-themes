@@ -10,11 +10,6 @@
 	border: none;
 }
 
-// Icon shadows cause massive lag in caja navigation window, especially with lots of icons. Disable icon shadows there for now.
-.caja-navigation-window scrolledwindow widget > * {
-	-gtk-icon-shadow: none;
-}
-
 // MATE panel
 .mate-panel-menu-bar {
 	// Remove the drop down arrows from panel buttons
