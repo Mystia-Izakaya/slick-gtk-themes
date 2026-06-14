@@ -55,6 +55,6 @@ For inkscape, the only modification needed is to restore borders around buttons:
 echo "button { border: solid black 1px; }" | sudo tee /usr/share/inkscape/ui/user.css
 ```
 
-Emerald theme
--------------
+Emerald themes
+--------------
 Included is also two emerald themes inside `./emerald-themes` to be used with the Emerald window decorator, import the themes from Emerald Theme Manager. These themes are also based on OriginalSeed's DarkCold emerald theme.
