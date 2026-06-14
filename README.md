@@ -4,20 +4,31 @@ SlickCold and SlickFire GTK3+ Themes
 SlickCold is complete rewrite of OriginalSeed's [DarkCold](https://github.com/originalseed/darkcold) GTK theme from scratch in sass, with some assests reused.
 SlickFire is generated from SlickCold based on infinity0's [DarkFire](https://github.com/infinity0/dark-themes) script.
 
-These themes were designed and only tested on MATE, though feel free to report if anything seems broken on other DEs.
-
 The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
+
+Previews
+========
+![SlickCold](./gallery/SlickCold-preview.png)
+![SlickFire](./gallery/SlickFire-preview.png)
 
 Installation
 ============
 Download the latest release and unpack to `~/.themes`.
-Alternatively you can do this:
+Alternatively, if you want the latest commits then can do this:
 ```
 git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
 cd slick-gtk-themes
 ./generate.sh
 mv SlickCold SlickFire ~/.themes
 ```
+
+Recommended use
+===============
+These themes were designed and tested only on MATE, though feel free to report if anything seems broken on other DEs.
+
+For icon themes, SlickCold and SlickFire look nice with gnome-brave-icons and gnome-wine-icons respectively.
+
+Consider also using [gtk-nocsd](https://codeberg.org/MorsMortium/gtk-nocsd) to remove both GTK4 and GTK3 headerbars (GTK3 headerbars are themed to match window decorations as much as possible, unfortunately however, some aspects of GTK3 headerbars cannot be manipulated with CSS alone)
 
 Extras
 ======
