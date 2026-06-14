@@ -50,7 +50,7 @@ Now Open GIMP, go to Edit > Preferences > Interface > Theme > Select NoOverrides
 Theming Inkscape
 ----------------
 Inkscape also tries to override the system theme, however it seems to do so less agressively than GIMP.
-Inkscape override the system theme by `/usr/share/inkscape/ui/style.css` which is then overriden by `/usr/share/inkscape/ui/user.css`.
+Inkscape overrides the system theme by `/usr/share/inkscape/ui/style.css` which is then overriden by `/usr/share/inkscape/ui/user.css`.
 For inkscape, the only modification needed is to restore borders around buttons:
 ```
 echo "button { border: solid black 1px; }" | sudo tee /usr/share/inkscape/ui/user.css
