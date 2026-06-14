@@ -59,6 +59,11 @@ selection {
 	background-color: $selected-bg-color;
 }
 
+// Dim labels can't have transparency, adjust their color instead
+.dim-label {
+	color: color.mix($fg-color, $bg-color);
+}
+
 @keyframes alert {
 	from {
 		box-shadow: inset $attention-color 0px 0px 10px 0px;
