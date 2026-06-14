@@ -107,6 +107,11 @@ $border: (
 
 $separator-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #0448c2, #11b8ff, #0448c2);
 
+$separator-with-border-gradient: (
+	(("linear", 50% 100%, 0% 50%), 180deg, black, black)
+	(("linear", 100% 100%, 50% 50%), 180deg, #0448c2, #11b8ff, #0448c2)
+);
+
 //////////
 // Bars //
 //////////

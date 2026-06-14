@@ -42,3 +42,17 @@ menu > separator {
 	margin-right: 5px;
 	margin-left: 5px;
 }
+
+PanelToplevel.vertical PanelSeparator {
+	color: transparent;
+	@include borderless-gradient($separator-with-border-gradient, "vertical");
+	background-size: 18px 1px;
+	background-position: center calc(50% - 0.5px), center calc(50% + 0.5px);
+}
+
+PanelToplevel.horizontal PanelSeparator {
+	color: transparent;
+	@include borderless-gradient($separator-with-border-gradient, "horizontal");
+	background-size: 1px 18px;
+	background-position: calc(50% - 0.5px) center, calc(50% + 0.5px) center;
+}
