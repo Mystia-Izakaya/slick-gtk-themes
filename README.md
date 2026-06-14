@@ -14,7 +14,8 @@ Previews
 Installation
 ============
 Download the latest release and unpack to `~/.themes`.
-Alternatively, if you want the latest commits then can do this:
+
+Alternatively, if you want the latest commits then you can do this:
 ```
 git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
 cd slick-gtk-themes
