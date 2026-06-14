@@ -2,7 +2,7 @@
 
 set -e
 
-DART_SASS_VERSION="1.99.0"
+DART_SASS_VERSION="1.101.0"
 
 COMPILER="./dart-sass/sass"
 
