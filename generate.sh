@@ -23,7 +23,7 @@ fi
 # Download and unpack the dart-sass compiler if it doesn't exist or if the version doesn't match
 if [ "$($COMPILER --version 2> /dev/null)" != "$DART_SASS_VERSION" ]; then
 	echo "Downloading dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz..."
-	[ -d "./dart-sass" ] && echo "Removing old files..." && rm -r "./dart-sass"
+	[ -d "./dart-sass" ] && echo "Removing old Sass directory..." && rm -r "./dart-sass"
 	mkdir -p "./dart-sass"
 	wget -q -P "./dart-sass" "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
 	echo "Unpacking dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz..."
@@ -32,8 +32,8 @@ if [ "$($COMPILER --version 2> /dev/null)" != "$DART_SASS_VERSION" ]; then
 fi
 
 # Copy relevant theme files
-[ -d "./SlickCold" ] && echo "Removing old directory..." && rm -r "./SlickCold"
-[ -d "./SlickFire" ] && echo "Removing old directory..." && rm -r "./SlickFire"
+[ -d "./SlickCold" ] && echo "Removing old SlickCold directory..." && rm -r "./SlickCold"
+[ -d "./SlickFire" ] && echo "Removing old SlickFire directory..." && rm -r "./SlickFire"
 echo "Copying files..."
 cp -r "./src" "./SlickCold"
 cp -r "./src" "./SlickFire"

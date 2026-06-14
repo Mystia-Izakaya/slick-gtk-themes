@@ -17,14 +17,14 @@ fi
 ./generate.sh
 
 if [ -d '/usr/share/themes/SlickCold' ]; then
-	echo "Removing old SlickCold..."
+	echo "Removing old SlickCold from /usr/share/themes..."
 	$SUID_PROG rm -rf '/usr/share/themes/SlickCold'
 fi
 if [ -d '/usr/share/themes/SlickFire' ]; then
-	echo "Removing old SlickFire..."
+	echo "Removing old SlickFire from /usr/share/themes..."
 	$SUID_PROG rm -rf '/usr/share/themes/SlickFire'
 fi
 
-echo "Copying SlickCold and SlickFire..."
+echo "Copying SlickCold and SlickFire to /usr/share/themes..."
 $SUID_PROG cp -r SlickCold SlickFire '/usr/share/themes'
 echo "Done."
