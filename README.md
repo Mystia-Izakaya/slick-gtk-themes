@@ -8,28 +8,48 @@ The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
 
 Previews
 ========
-![SlickCold](./gallery/SlickCold-preview.png)
-![SlickFire](./gallery/SlickFire-preview.png)
+Below is a preview of the themes in GTK Widget Factory.
+
+SlickCold:
+![If you see this, then the image didn't load](./gallery/SlickCold-preview.png)
+SlickFire:
+![If you see this, then the image didn't load](./gallery/SlickFire-preview.png)
 
 Installation
 ============
-Download the latest release and unpack to `~/.themes`.
+There are several ways to install:
 
-Alternatively, if you want the latest commits then you can do this:
+Local Installation
+------------------
 ```
 git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
 cd slick-gtk-themes
 ./generate.sh
+mkdir -p ~/.themes
 mv SlickCold SlickFire ~/.themes
 ```
 
-Recommended use
+System-wide Installation
+------------------------
+```
+git clone https://github.com/Mystia-Izakaya/slick-gtk-themes
+cd slick-gtk-themes
+./install.sh
+```
+This will install the themes to `/usr/share/themes/SlickCold` and `/usr/share/themes/SlickFire`, to uninstall, simply remove these directories.
+
+
+Alternatively, if the scripts above don't work, then download the latest release and unpack to `/usr/share/themes` (for a system-wide installation) or `~/.themes` (for a local installation).
+
+Recommendations
 ===============
 These themes were designed and tested only on MATE, though feel free to report if anything seems broken on other DEs.
 
-For icon themes, SlickCold and SlickFire look nice with gnome-brave-icons and gnome-wine-icons respectively.
+I recommend installing the themes system-wide because GTK application that require root privileges (e.g. GParted, LightDM, ...etc) will not detect the themes if they are installed locally.
 
-Consider also using [gtk-nocsd](https://codeberg.org/MorsMortium/gtk-nocsd) to remove both GTK4 and GTK3 headerbars (GTK3 headerbars are themed to match window decorations as much as possible, unfortunately however, some aspects of GTK3 headerbars cannot be manipulated with CSS alone)
+For icon themes to use with these themes, I recommend gnome-brave-icons and gnome-wine-icons.
+
+Consider also using [gtk-nocsd](https://codeberg.org/MorsMortium/gtk-nocsd) to remove both GTK4 and GTK3 headerbars, I have tried to theme GTK3 CSD headerbars to match window decorations as much as possible, unfortunately however, some aspects of GTK3 headerbars cannot be manipulated with CSS alone, and headerbars will often look fatter than what they should be.
 
 Extras
 ======
