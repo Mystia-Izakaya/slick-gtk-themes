@@ -8,7 +8,7 @@ The `gtk-2.0` directory is mostly untouched and is kept for legacy compatibilty.
 
 Previews
 ========
-Below is a preview of the themes in GTK Widget Factory.
+Below are previews of the themes in GTK Widget Factory.
 
 SlickCold:
 ![If you see this, then the image didn't load](./gallery/SlickCold-preview.png)
@@ -49,7 +49,7 @@ I recommend installing the themes system-wide because GTK application that requi
 
 For icon themes to use with these themes, I recommend gnome-brave-icons and gnome-wine-icons.
 
-Consider also using [gtk-nocsd](https://codeberg.org/MorsMortium/gtk-nocsd) to remove both GTK4 and GTK3 headerbars, I have tried to theme GTK3 CSD headerbars to match window decorations as much as possible, unfortunately however, some aspects of GTK3 headerbars cannot be manipulated with CSS alone, and headerbars will often look fatter than what they should be.
+Consider also using [gtk-nocsd](https://codeberg.org/MorsMortium/gtk-nocsd) to remove both GTK4 and GTK3 headerbars, I have tried to theme GTK3 CSD headerbars to match window decorations as much as possible, unfortunately, some aspects of GTK3 headerbars cannot be manipulated with CSS alone, and headerbars will often look fatter than what they should be.
 
 Extras
 ======
