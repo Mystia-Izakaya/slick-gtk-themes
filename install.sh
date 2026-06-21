@@ -13,8 +13,8 @@ else
 	exit 1
 fi
 
-./dart-sass/sass --no-source-map 'src/gtk-3.0/gtk.scss' 'src/gtk-3.0/gtk.css'
 ./generate.sh
+./dart-sass/sass --no-source-map 'src/gtk-3.0/gtk.scss' 'src/gtk-3.0/gtk.css'
 
 if [ -d '/usr/share/themes/SlickCold' ]; then
 	echo "Removing old SlickCold from /usr/share/themes..."
