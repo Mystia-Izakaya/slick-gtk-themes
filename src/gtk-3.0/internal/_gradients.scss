@@ -249,5 +249,5 @@ $calendar-header: (("linear", 100% 100%, 50% 50%), 180deg, #4b4b4b, #2e2e2e);
 // MATE Panel
 // Note: the panel does not support multiple gradients, nor does it seem to support changing
 // the gradient size or position.
-$panel-gradient: (color.scale(#4e4f50, $alpha: -10%), color.scale(#20202a, $alpha: -10%));
+$panel-gradient: (color.scale(#4e4f50, $alpha: -25%), color.scale(#20202a, $alpha: -25%));
 $panel-edge: color.scale($border-passive-color, $alpha: -75%);
