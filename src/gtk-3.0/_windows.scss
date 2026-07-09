@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'internal/functions' as *;
 @use 'internal/gradients' as *;
 @use 'internal/helpers' as *;
@@ -58,14 +59,11 @@ scrolledwindow {
 	}
 }
 
-@mixin scroll($state, $orientation) {
-	min-#{dimension($orientation)}: 16px;
-	min-#{dimension(flip($orientation))}: 32px;
-	background: none;
-	border-image-source: url("assets/scrollbars/slider-#{$orientation}-#{$state}.png");
-	border-image-slice: rotate-n((8 2 8 2), dirindex($orientation));
-	border-image-width: rotate-n((8px 2px 8px 2px), dirindex($orientation));
-	border-image-repeat: rotate-n((stretch round), dirindex($orientation));
+@mixin scrollbar-slider($state, $orientation) {
+	@include borderless-gradient(map.get($scrollbar, $state), flip($orientation));
+	border: black 1px solid;
+	min-#{dimension($orientation)}: 14px;
+	min-#{dimension(flip($orientation))}: 20px;
 	margin: -1px;
 }
 
@@ -76,12 +74,8 @@ scrollbar {
 	button {
 		color: transparent;
 		padding: 0px;
-	}
-	&.vertical button {
-		min-height: 14px;
-	}
-	&.horizontal button {
 		min-width: 14px;
+		min-height: 14px;
 	}
 	@each $orientation in ("vertical", "horizontal") {
 		&.#{$orientation} {
@@ -94,13 +88,13 @@ scrollbar {
 				}
 			}
 			& slider {
-				@include scroll("normal", $orientation);
+				@include scrollbar-slider("normal", $orientation);
 			}
 			& slider:hover {
-				@include scroll("hover", $orientation);
+				@include scrollbar-slider("hovered", $orientation);
 			}
 			& slider:active {
-				@include scroll("active", $orientation);
+				@include scrollbar-slider("pressed", $orientation);
 			}
 			// Steppers
 			@each $stepper in ("up", "down") {

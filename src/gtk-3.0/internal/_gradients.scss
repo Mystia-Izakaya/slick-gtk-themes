@@ -212,6 +212,37 @@ $button: (
 // Troughs
 $trough-bg: color.mix($theme-color, black, 50%);
 
+// Scrollbars
+$scrollbar: (
+	"normal": (
+		(("linear", 100% 1px, 50% 0%), 90deg, #252525 15%, #515151 50%)
+		(("linear", 1px 100%, 100% 50%), 0deg, #515151, #515151)
+		(("linear", 100% 1px, 50% 100%), 90deg, #252525 15%, #515151 50%)
+		(("linear", 1px 100%, 0% 50%), 0deg, #252525 25%, #6f6f6f, #252525 75%)
+		(("radial", calc(50% - 1px) 100%, 1px 50%), 180% 33.33%, 100% 50%, #525252 10%, black)
+		(("radial", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 180% 33.33%, 0% 50%, black 15%, transparent)
+		(("linear", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 90deg, #2d2d2d, #444444)
+	),
+	"hovered": (
+		(("linear", 100% 1px, 50% 0%), 90deg, #252525 15%, #515151 50%)
+		(("linear", 1px 100%, 100% 50%), 0deg, #515151 25%, #0064f3, #515151 75%)
+		(("linear", 100% 1px, 50% 100%), 90deg, #252525 15%, #515151 50%)
+		(("linear", 1px 100%, 0% 50%), 0deg, #252525 25%, #0064f3, #252525 75%)
+		(("radial", calc(50% - 1px) 100%, 1px 50%), 180% 33.33%, 100% 50%, #0d479e 10%, black)
+		(("radial", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 360% 33.33%, 0% 50%, #0d479e 10%, rgba(#0d479e, 0))
+		(("linear", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 90deg, #2d2d2d, #444444)
+	),
+	"pressed": (
+		(("linear", 100% 1px, 50% 0%), 90deg, #3e8cd3, #2670cc 50%, #0448c2 50%, #11b8ff)
+		(("linear", 1px 100%, 100% 50%), 0deg, #11b8ff 25%, #0064f3, #11b8ff 75%)
+		(("linear", 100% 1px, 50% 100%), 90deg, #3e8cd3, #2670cc 50%, #0448c2 50%, #11b8ff)
+		(("linear", 1px 100%, 0% 50%), 0deg, #3e8cd3 25%, #0064f3, #3e8cd3 75%)
+		(("radial", calc(50% - 1px) 100%, 1px 50%), 180% 100%, 100% 50%, #0d479e 10%, black)
+		(("radial", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 240% 100%, 0% 50%, #0d479e 10%, rgba(#0d479e, 0))
+		(("linear", calc(50% - 1px) 100%, calc(100% - 1px) 50%), 90deg, #2d2d2d, #444444)
+	)
+);
+
 // Progressbars
 $progressbar-gradient: (("linear", 100% 100%, 50% 50%), 180deg, #16609e, #032c70, #0851b8);
 
