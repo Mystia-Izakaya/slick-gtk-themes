@@ -105,6 +105,11 @@ widget.view {
 	-gtk-icon-shadow: none;
 }
 
+// Fix for VMware Workstation GTK3 UI, scrollbars do not disappear in fullscreen mode unless padding is set to 0
+.fullscreen paned {
+	padding: 0px;
+}
+
 // Fallback styles
 .gtkstyle-fallback {
 	color: $fg-color;
