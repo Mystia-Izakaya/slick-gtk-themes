@@ -75,11 +75,27 @@ revealer > widget {
 //}
 // Moved to _windows.scss
 
-// Lighten scrolledwindows inside notebooks
-stack:not(:only-child) scrolledwindow {
-	@include border-box($theme-color-light, "passive");
-	padding: 1px;
+stack:not(:only-child) {
+	// Lighten scrolledwindows inside notebooks
+	scrolledwindow {
+		@include border-box($theme-color-light, "passive");
+		padding: 1px;
+		> .view {
+			background: none;
+			> .view:not(:hover):not(:active):not(:checked):not(:selected) {
+				background: none;
+			}
+		}
+
+	}
+	// Reduce border overload inside notebooks
+	> scrolledwindow {
+		border: none;
+		background: none;
+		padding: 0px;
+	}
 }
+
 
 // Fixes text color in MATE control center and ccsm
 //#slab_section_style1:selected,
