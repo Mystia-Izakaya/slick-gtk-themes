@@ -88,10 +88,10 @@ stack:not(:only-child) scrolledwindow {
 //}
 // Forget it, this is not worth it, I couldn't get this to work
 
-// Fix the annoying blackening of unfocused selected icons in caja
-.view:active {
-	color: $selected-fg-color;
-	background-color: $selected-bg-color;
+// Adjust the highlight color of selected icons in IconView widgets
+widget.view > widget.view:selected,
+widget.view > widget.view:active {
+	background-color: $highlight-color;
 }
 
 // Highlight lables
