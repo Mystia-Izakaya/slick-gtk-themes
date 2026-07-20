@@ -117,7 +117,8 @@ label.highlight {
 }
 
 // Icon shadows cause massive lag in file managers that use IconView widget, disable shadows to improve performance
-widget.view {
+widget.view,
+iconview.view {
 	-gtk-icon-shadow: none;
 }
 
