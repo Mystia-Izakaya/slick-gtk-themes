@@ -6,6 +6,13 @@ DART_SASS_VERSION="1.101.0"
 
 COMPILER="./dart-sass/sass"
 
+# Check if wget is installed
+if [ ! "$(which wget)" ]; then
+	echo "You don't have wget installed."
+	echo "Aborting..."
+	exit 1
+fi
+
 # Check if ImageMagick is installed
 if [ ! "$(which magick)" ]; then
 	echo "You don't have ImageMagick installed."
